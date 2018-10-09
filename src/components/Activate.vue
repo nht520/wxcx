@@ -15,11 +15,23 @@
             label="请输入你的手机号码"
             name="username"
           ></v-text-field>
-          <v-text-field
-            type="text"
-            label="请输入你的验证码"
-            name="username"
-          ></v-text-field>
+
+          <v-layout row wrap>
+            <v-flex xs8>
+              <v-card-text class="px-0">
+                <v-text-field
+                  type="text"
+                  label="请输入你的验证码"
+                  name="username"
+                ></v-text-field>
+              </v-card-text>
+            </v-flex>
+            <v-flex xs4>
+              <v-card-text class="px-0">
+                <button class="verification">免费获取</button>
+              </v-card-text>
+            </v-flex>
+          </v-layout>
           <v-text-field
             type="password"
             label="请输入你的密码"
@@ -50,7 +62,7 @@
         },
         data(){
           return{
-            text:'员工激活'
+            text:'账号激活'
           }
         },
         methods:{
@@ -58,7 +70,6 @@
         }
     }
 </script>
-
 <style lang="stylus" rel="stylesheet/stylus">
   .Header
     overflow hidden
@@ -83,4 +94,9 @@
       color #797979
   .el-message
     margin-top 80%
+  .ActivateFrom .verification
+    border 1px solid #5651ce
+    background #ffffff
+    color #5651ce
+    line-height 25px
 </style>

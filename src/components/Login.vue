@@ -29,7 +29,7 @@
                   </v-flex>
                   <v-flex xs7>
                       <v-card-text class="px-0">
-                        <router-link tag="span" to="/register">忘记密码？</router-link>
+                        <router-link tag="span" to="/Find">忘记密码？</router-link>
                       </v-card-text>
                   </v-flex>
                   <v-flex xs12>
@@ -87,7 +87,7 @@
                 window.sessionStorage.userInfo = JSON.stringify(_this.userInfo);
                 console.log(_this.$store);
                 _this.$store.dispatch('setUserInfo', userInfo);
-                let redirect = decodeURIComponent(_this.$route.query.redirect || '/');
+                let redirect = decodeURIComponent(_this.$route.query.redirect || '/Home');
                 _this.$router.push({
                   path: redirect
                 });

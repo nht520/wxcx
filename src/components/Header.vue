@@ -6,7 +6,7 @@
           <v-btn icon>
             <v-icon  @click="back">chevron_left</v-icon>
           </v-btn>
-          <v-toolbar-title>{{text}}</v-toolbar-title>
+          <v-toolbar-title class="titleText">{{text}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!--<v-btn icon>-->
             <!--<v-icon >more_vert</v-icon>-->
@@ -47,5 +47,6 @@
     background #5c57e3
     text-align center
     color #ffffff
-
+  .titleText
+    margin-left 95px!important
 </style>
