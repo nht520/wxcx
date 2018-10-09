@@ -66,16 +66,27 @@
     methods: {
       goLogin(){
         let _this = this;
+
+        // if (/^[1][3578][0-9]{9}$/.test(_this.username) === false) this.$dialog('帐号不正确');
+        // else if (/^[\d\D]{6,12}$/.test(this.pwd) === false) this.$dialog('密码不正确');
+        // else if (this.code.toUpperCase() !== this.canvasCode.codeNums.toUpperCase()) this.$dialog('验证码不正确');
+        // else {
+        //   //先跳到借款首页暂代，后期ajax替换
+        //   this.$router.push('/loan')
+        // }
+
         if(_this.username ==''){
-          _this.text="请输入用户名"
-          //调用子组件的logClick方法
-          _this.$refs.DialogClick.logClick()
+            _this.text="请输入用户名"
+            //调用子组件的logClick方法
+            _this.$refs.DialogClick.logClick()
         }else if(_this.password == ''){
-          _this.text="请输入密码"
-          //调用子组件的logClick方法
-          _this.$refs.DialogClick.logClick()
+            _this.text="请输入密码"
+            _this.$refs.DialogClick.logClick()
+        }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
+            _this.text="密码在6-12位英文数字之间"
+            _this.$refs.DialogClick.logClick()
         }else{
-          _this.$http.post('/login',{
+            _this.$http.post('/login.json',{
             loginName:_this.username,
             loginPawd:_this.password,
           }).then((res)=>{
@@ -106,6 +117,7 @@
       //弹出层
     }
   }
+
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
    .Loginbj img

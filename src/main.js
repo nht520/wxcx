@@ -12,11 +12,15 @@ import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"
 Vue.use(Vuetify)
 //表单验证
-// import VeeValidate from 'vee-validate'
-// Vue.use(VeeValidate)
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
+//
 import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
 Vue.use(Vant)
+//
+import Vuex from 'vuex' //引入状态管理
+Vue.use(Vuex) ;
 // 解决不同组件 页面之间的数据共享  数据持久化
 Vue.config.productionTip = false
 /* eslint-disable no-new */
