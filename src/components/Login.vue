@@ -6,7 +6,6 @@
         </div>
         <!--输入-->
         <div class="LoginInput">
-          <form>
             <v-text-field
               type="text"
               label="请输入你的账号"
@@ -40,7 +39,6 @@
                   </v-flex>
                 </v-layout>
             </div>
-          </form>
         </div>
         <!--弹出层-->
         <Dialog  ref="DialogClick">

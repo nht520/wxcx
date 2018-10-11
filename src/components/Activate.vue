@@ -4,7 +4,6 @@
       <Header class="Header"  :text="title"></Header>
       <!--from input-->
       <div class="ActivateFrom">
-        <form>
           <v-text-field
             type="text"
             label="请输入你的账号"
@@ -53,7 +52,6 @@
               </v-flex>
             </v-layout>
           </div>
-        </form>
       </div>
       <!--弹出层-->
       <Dialog ref="DialogClick">

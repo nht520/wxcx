@@ -38,6 +38,6 @@ export default new Router({
       path: '/Find',
       name: 'Find',
       component: Find
-    },
+    }
   ]
 })
