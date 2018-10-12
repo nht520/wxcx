@@ -1,7 +1,6 @@
 <template>
   <div>
-    <mt-button @click="open('picker1')" size="large"  v-text="date1"></mt-button>
-    <br>
+    <mt-button @click="open('picker1')" size="large" >{{value}}</mt-button>
     <mt-datetime-picker
       ref="picker1"
       type="date"
@@ -9,7 +8,8 @@
       year-format="{value} 年"
       month-format="{value} 月"
       date-format="{value} 日"
-      @confirm="handleChange">
+      @confirm="handleChange"
+    >
     </mt-datetime-picker>
   </div>
 </template>
@@ -23,12 +23,10 @@
     name: 'hello',
     data () {
       return {
-        date1:'',
         value: new Date(),
         //show: true,
         /*startDate: new Date('2000/1/1'),
         endDate: new Date('2025/1/1'),*/
-
       }
     },
     methods: {
@@ -36,8 +34,7 @@
         this.$refs[picker].open();
       },
       handleChange(value) {
-        this.date1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
-        // console.log(value);
+        this.value = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
         // console.log(value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate());
         //this.show = true;
         // Toast({
