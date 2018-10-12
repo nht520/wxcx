@@ -41,9 +41,11 @@
             </div>
         </div>
         <!--弹出层-->
+      <transition name="fade">
         <Dialog  ref="DialogClick">
             <span v-text="text"></span>
         </Dialog>
+      </transition>
     </div>
 </template>
 <script>
@@ -64,7 +66,6 @@
     methods: {
       goLogin(){
         let _this = this;
-
         // if (/^[1][3578][0-9]{9}$/.test(_this.username) === false) this.$dialog('帐号不正确');
         // else if (/^[\d\D]{6,12}$/.test(this.pwd) === false) this.$dialog('密码不正确');
         // else if (this.code.toUpperCase() !== this.canvasCode.codeNums.toUpperCase()) this.$dialog('验证码不正确');
@@ -72,7 +73,6 @@
         //   //先跳到借款首页暂代，后期ajax替换
         //   this.$router.push('/loan')
         // }
-
         if(_this.username ==''){
             _this.text="请输入用户名"
             //调用子组件的logClick方法
@@ -133,6 +133,9 @@
         padding 5% 0px
         border-radius 3px
         font-size 16px
+      & button:hover
+        background #6c66ff
+        transition  1s
    .activate
       color #3d3d3d
       & .xs7
@@ -143,4 +146,9 @@
         color #797979
    .el-message
       margin-top 80%
+   .fade-enter-active, .fade-leave-active
+     transition opacity .8s
+   .fade-enter, .fade-leave-to
+     opacity 0
+
 </style>

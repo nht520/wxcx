@@ -11,7 +11,10 @@ Vue.use(ElementUI)
 import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"
 Vue.use(Vuetify)
-
+//
+import Mint from 'mint-ui';
+Vue.use(Mint);
+import 'mint-ui/lib/style.css'
 
 import Vuex from 'vuex' //引入状态管理
 Vue.use(Vuex) ;

@@ -28,7 +28,7 @@
           </v-flex>
           <v-flex xs4>
               <v-card-text class="px-0">
-                <datetime></datetime>
+                2015-134-5
               </v-card-text>
           </v-flex>
           <v-flex xs3>
@@ -58,6 +58,7 @@
           </v-flex>
         </v-layout>
       </v-layout>
+      <datetime></datetime>
     </div>
 </template>
 <script>
