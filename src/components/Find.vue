@@ -52,7 +52,7 @@
   import Header from "./Header";
   import Dialog from "./Dialog";
   export default {
-    name: "Activate",
+    name: "Find",
     components: {
       Dialog,
       Header

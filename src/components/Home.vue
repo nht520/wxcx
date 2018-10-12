@@ -58,10 +58,13 @@
           </v-layout>
         </v-layout>
       </div>
+
+
+
     </div>
 </template>
 <script>
-  import Datetime from "./datetime";
+  import Datetime from "./Datetime";
   export default {
         name: "Home",
         components: {
@@ -114,7 +117,6 @@
           }
         },
         methods:{
-
         },
         mounted(){
         }
