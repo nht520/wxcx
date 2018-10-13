@@ -14,11 +14,9 @@
   </div>
 </template>
 
-<style>
 
-</style>
 <script type="text/babel">
-  import { Toast } from 'mint-ui';
+  // import { Toast } from 'mint-ui';
   export default {
     name: 'hello',
     data () {

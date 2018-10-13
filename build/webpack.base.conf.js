@@ -22,7 +22,7 @@ const webpackConfig  = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', 'less'],
+    extensions: ['.js', '.vue', '.json', 'less','sass'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
