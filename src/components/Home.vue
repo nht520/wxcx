@@ -11,7 +11,7 @@
                 <v-toolbar-title>重庆市渝中区</v-toolbar-title>
                 <v-toolbar-title>华神坨</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon>
+                <v-btn icon @click="logout()">
                   退出
                 </v-btn>
               </v-toolbar>
@@ -58,9 +58,6 @@
           </v-layout>
         </v-layout>
       </div>
-
-
-
     </div>
 </template>
 <script>
@@ -117,8 +114,23 @@
           }
         },
         methods:{
+          //点击清空rsessionStorage里面的user,退出登录
+          logout(){
+            sessionStorage.removeItem("user");
+            this.$router.push({path:'/'});
+          },
+          //如果在首页user为空  那么就跳转到登录页，反之跳转到Home页
+          home(){
+            var user = sessionStorage.getItem("user");
+            if(user==null){
+              this.$router.push({path:'/'})
+            }else{
+              this.$router.push({path:'Home'})
+            }
+          },
         },
         mounted(){
+          this.home();
         }
 
     }
