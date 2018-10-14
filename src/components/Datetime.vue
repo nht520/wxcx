@@ -40,7 +40,7 @@
       },
     },
     mounted(){
-      var value = new Date();
+      var  value = new Date();
       this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
     },
   }
