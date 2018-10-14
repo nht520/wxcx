@@ -119,7 +119,7 @@
             sessionStorage.removeItem("user");
             this.$router.push({path:'/'});
           },
-          //如果在首页user为空  那么就跳转到登录页，反之跳转到Home页
+          //如果在首页user为空  那么就跳转到登录页，反之留在Home页
           home(){
             var user = sessionStorage.getItem("user");
             if(user==null){

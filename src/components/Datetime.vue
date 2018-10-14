@@ -40,7 +40,6 @@
       },
     },
     mounted(){
-      // 这个不是在这调用 别瞎搞
       var value = new Date();
       this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
     },
