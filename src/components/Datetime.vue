@@ -13,8 +13,6 @@
     </mt-datetime-picker>
   </div>
 </template>
-
-
 <script type="text/babel">
   // import { Toast } from 'mint-ui';
   export default {
