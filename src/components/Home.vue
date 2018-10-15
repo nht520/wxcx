@@ -153,6 +153,8 @@
         },
         mounted(){
           this.home();
+          //进入页面默认显示当天的记录
+          this.inquire();
         }
 
     }
