@@ -96,7 +96,7 @@
           _this.$refs.DialogClick.logClick()
         }
       }
-    }
+    },
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">

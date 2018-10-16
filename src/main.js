@@ -17,13 +17,15 @@ Vue.use(Mint);
 import 'mint-ui/lib/style.css'
 
 import Vuex from 'vuex' //引入状态管理
+import store from './store/store'
 Vue.use(Vuex) ;
-// 解决不同组件 页面之间的数据共享  数据持久化
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

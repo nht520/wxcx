@@ -46,10 +46,13 @@
             <span v-text="text"></span>
         </Dialog>
       </transition>
+  
     </div>
 </template>
 <script>
   import Dialog from "./Dialog";
+  import Axios from "axios";
+
   export default {
     name:'Login',
     data(){
@@ -66,13 +69,6 @@
     methods: {
       goLogin(){
         let _this = this;
-        // if (/^[1][3578][0-9]{9}$/.test(_this.username) === false) this.$dialog('帐号不正确');
-        // else if (/^[\d\D]{6,12}$/.test(this.pwd) === false) this.$dialog('密码不正确');
-        // else if (this.code.toUpperCase() !== this.canvasCode.codeNums.toUpperCase()) this.$dialog('验证码不正确');
-        // else {
-        //   //先跳到借款首页暂代，后期ajax替换
-        //   this.$router.push('/loan')
-        // }
         if(_this.username ==''){
             _this.text="请输入用户名"
             //调用子组件的logClick方法
@@ -84,34 +80,38 @@
             _this.text="密码在6-12位英文数字之间"
             _this.$refs.DialogClick.logClick()
         }else{
-            _this.$http.post('/login.json',{
-            loginName:_this.username,
-            loginPawd:_this.password,
-          }).then((res)=>{
-            if(res.status == 200){
-              _this.userInfo = res.data;
-              if(_this.userInfo.status == 1){
-                //LOGIN success
-                window.sessionStorage.userInfo = JSON.stringify(_this.userInfo);
-                console.log(_this.$store);
-                _this.$store.dispatch('setUserInfo', userInfo);
-                let redirect = decodeURIComponent(_this.$route.query.redirect || '/Home');
-                _this.$router.push({
-                  path: redirect
-                });
-              }else{
-                alert(_this.userInfo.msg);
-              }
-            }else{
-              alert('请求出现错误');
-            }
+          //把用户名  密码统一存在_param里面  把_param提交到后台
+          var _param = new URLSearchParams();
+              _param.append("loginName",_this.username);
+              _param.append("loginPassword",_this.password);
+          Axios.post('http://localhost:8787/login',_param).then((res)=>{
             console.log(res);
+            if(res.data.code=="0"){
+              sessionStorage.setItem("user",res.data.data);
+              this.$router.push({path:'Home'})
+            }else{
+              _this.text=res.data.msg
+              _this.$refs.DialogClick.logClick()
+            }
           },(err)=>{
             console.log(err);
           });
         }
       },
       //弹出层
+      home(){
+        var user = sessionStorage.getItem("user");
+        if(user==null){
+          this.$router.push({path:'/'})
+        }else{
+          this.$router.push({path:'Home'})
+        }
+      },
+    },
+    mounted(){
+      // this.username = this.$store.state.name;
+      // this.password = this.$store.state.Pawd;
+      this.home();
     }
   }
 
