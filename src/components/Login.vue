@@ -17,6 +17,7 @@
               label="请输入你的密码"
               v-model="password"
               name="password"
+              @keyup.enter="goLogin()"
             ></v-text-field>
             <button @click="goLogin()">登陆</button>
             <div class="activate">
@@ -59,7 +60,6 @@
       return{
         username:'',
         password:'',
-        userInfo:{},
         text:''
       }
     },
@@ -81,9 +81,9 @@
             _this.$refs.DialogClick.logClick()
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
-          var _param = new URLSearchParams();
-              _param.append("loginName",_this.username);
-              _param.append("loginPassword",_this.password);
+          const _param = new URLSearchParams();
+                _param.append("loginName",_this.username);
+                _param.append("loginPassword",_this.password);
           Axios.post('http://localhost:8787/login',_param).then((res)=>{
             console.log(res);
             if(res.data.code=="0"){
@@ -98,7 +98,7 @@
           });
         }
       },
-      //弹出层
+      //判斷用户名是否为空 是就跳转到登录页 反之home页
       home(){
         var user = sessionStorage.getItem("user");
         if(user==null){
@@ -108,9 +108,17 @@
         }
       },
     },
+    created() {
+      //判断是否按下了回车
+      var lett = this;
+      document.onkeydown = function(e) {
+        var key = window.event.keyCode;
+        if (key == 13) {
+          lett.goLogin()
+        }
+      }
+    },
     mounted(){
-      // this.username = this.$store.state.name;
-      // this.password = this.$store.state.Pawd;
       this.home();
     }
   }

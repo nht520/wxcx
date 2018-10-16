@@ -35,6 +35,7 @@
       },
       handleChange(value) {
         this.value = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
+        this.value1 = this.value
         //this.show = true;
         // Toast({
         //   message: '已选择 ' + value.toString(),

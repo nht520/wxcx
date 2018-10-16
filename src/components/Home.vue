@@ -22,16 +22,16 @@
         <div class="HomeScreen">
           <v-layout row wrap>
             <v-flex xs4>
-              <datetime></datetime>
+              <datetime ref="date"></datetime>
             </v-flex>
             <v-flex xs1>
               <v-card-text class="px-0">至</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <datetime></datetime>
+              <datetime ref="date1"></datetime>
             </v-flex>
             <v-flex xs3>
-              <button>查询</button>
+              <button @click="inquire()">查询</button>
             </v-flex>
           </v-layout>
         </div>
@@ -61,6 +61,7 @@
     </div>
 </template>
 <script>
+  import Axios from 'axios'
   import Datetime from "./Datetime";
   export default {
         name: "Home",
@@ -110,7 +111,9 @@
                 receivable:'¥ 20.21',
                 gross:'3.213',
               }
-            ]
+            ],
+            date:'',
+            date1:''
           }
         },
         methods:{
@@ -128,9 +131,30 @@
               this.$router.push({path:'Home'})
             }
           },
+          //查询方法
+          inquire(){
+            let _this = this;
+            //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
+            const _date = new URLSearchParams();
+                  _date.date=_this.$refs.date.value1;
+                  _date.date1=_this.$refs.date1.value1;
+                  // console.log(_date.date)
+                  // console.log(_date.date1)
+            let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+            Axios.post(api,_date)
+              .then((res)=>{
+                console.log(res);
+                _this.HomeLise=res.data.result;
+              },(err)=>{
+                console.log(err)
+              })
+
+          }
         },
         mounted(){
           this.home();
+          //进入页面默认显示当天的记录
+          this.inquire();
         }
 
     }
