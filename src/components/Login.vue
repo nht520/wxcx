@@ -82,12 +82,12 @@
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
           const _param = new URLSearchParams();
-                _param.append("loginName",_this.username);
-                _param.append("loginPassword",_this.password);
-          Axios.post('http://localhost:8787/login',_param).then((res)=>{
+                _param.append("username",_this.username);
+                _param.append("dateline",_this.password);
+          Axios.post('http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1',_param).then((res)=>{
             console.log(res);
-            if(res.data.code=="0"){
-              sessionStorage.setItem("user",res.data.data);
+            if(res.data.result[0].catid=="20"){
+              sessionStorage.setItem("user",res.data.result);
               this.$router.push({path:'Home'})
             }else{
               _this.text=res.data.msg

@@ -44,16 +44,16 @@
               <v-card-text><span>{{item.title}}</span></v-card-text>
             </v-flex>
             <v-flex xs3>
-              <v-card-text><span> {{item.quantity}}</span></v-card-text>
+              <v-card-text><span> {{item.aid}}</span>盒</v-card-text>
             </v-flex>
             <v-flex xs7>
-              <v-card-text>实收：<span class="official">{{item.official}}</span></v-card-text>
+              <v-card-text>实收：<span class="official">{{item.aid}}</span></v-card-text>
             </v-flex>
             <v-flex xs5>
-              <v-card-text>应收：<span>{{item.receivable}}</span></v-card-text>
+              <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
             </v-flex>
             <v-flex xs12>
-              <v-card-text>毛利：<span>{{item.gross}}</span></v-card-text>
+              <v-card-text>毛利：<span>{{item.dateline}}</span></v-card-text>
             </v-flex>
           </v-layout>
         </v-layout>
@@ -71,46 +71,46 @@
         data () {
           return {
             HomeLise:[
-              {
-                id:1,
-                title:'(一品康) 宁尖牌芦荟软胶囊',
-                quantity:'1.00 罐',
-                official:'¥ 19.2134',
-                receivable:'¥ 50.21',
-                gross:'19.213',
-              },
-              {
-                id:2,
-                title:'(康美) 长生不老泉',
-                quantity:'5.00 盒',
-                official:'¥ 9.2134',
-                receivable:'¥ 20.21',
-                gross:'3.213',
-              },
-              {
-                id:3,
-                title:'(康美) 长生不老泉',
-                quantity:'5.00 盒',
-                official:'¥ 9.2134',
-                receivable:'¥ 20.21',
-                gross:'3.213',
-              },
-              {
-                id:4,
-                title:'(康美) 长生不老泉',
-                quantity:'5.00 盒',
-                official:'¥ 9.2134',
-                receivable:'¥ 20.21',
-                gross:'3.213',
-              },
-              {
-                id:5,
-                title:'(康美) 长生不老泉',
-                quantity:'5.00 盒',
-                official:'¥ 9.2134',
-                receivable:'¥ 20.21',
-                gross:'3.213',
-              }
+              // {
+              //   id:1,
+              //   title:'(一品康) 宁尖牌芦荟软胶囊',
+              //   quantity:'1.00 罐',
+              //   official:'¥ 19.2134',
+              //   receivable:'¥ 50.21',
+              //   gross:'19.213',
+              // },
+              // {
+              //   id:2,
+              //   title:'(康美) 长生不老泉',
+              //   quantity:'5.00 盒',
+              //   official:'¥ 9.2134',
+              //   receivable:'¥ 20.21',
+              //   gross:'3.213',
+              // },
+              // {
+              //   id:3,
+              //   title:'(康美) 长生不老泉',
+              //   quantity:'5.00 盒',
+              //   official:'¥ 9.2134',
+              //   receivable:'¥ 20.21',
+              //   gross:'3.213',
+              // },
+              // {
+              //   id:4,
+              //   title:'(康美) 长生不老泉',
+              //   quantity:'5.00 盒',
+              //   official:'¥ 9.2134',
+              //   receivable:'¥ 20.21',
+              //   gross:'3.213',
+              // },
+              // {
+              //   id:5,
+              //   title:'(康美) 长生不老泉',
+              //   quantity:'5.00 盒',
+              //   official:'¥ 9.2134',
+              //   receivable:'¥ 20.21',
+              //   gross:'3.213',
+              // }
             ],
             date:'',
             date1:''

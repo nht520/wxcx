@@ -9,7 +9,6 @@
     <mt-actionsheet :actions="actions2" v-model="sheetVisible2" cancel-text=""></mt-actionsheet>
   </div>
 </template>
-
 <style>
   /*@component-namespace page {*/
     /*@component actionsheet {*/
