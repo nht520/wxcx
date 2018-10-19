@@ -53,6 +53,7 @@
 <script>
   import Dialog from "./Dialog";
   import Axios from "axios";
+  import storge from '../storage/storage'
   export default {
     name:'Login',
     data(){
@@ -86,7 +87,7 @@
           Axios.post('http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1',_param).then((res)=>{
             console.log(res);
             if(res.data.result[0].catid=="20"){
-              sessionStorage.setItem("user",res.data.result);
+              storge.set("user",res.data.result);
               this.$router.push({path:'Home'})
             }else{
               _this.text=res.data.msg
@@ -99,7 +100,7 @@
       },
       //判斷用户名是否为空 是就跳转到登录页 反之home页
       home(){
-        var user = sessionStorage.getItem("user");
+        var user = storge.get("user");
         if(user==null){
           this.$router.push({path:'/'})
         }else{

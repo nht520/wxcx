@@ -62,6 +62,7 @@
 </template>
 <script>
   import Axios from 'axios'
+  import storge from '../storage/storage'
   import Datetime from "./Datetime";
   export default {
         name: "Home",
@@ -119,12 +120,12 @@
         methods:{
           //点击清空rsessionStorage里面的user,退出登录
           logout(){
-            sessionStorage.removeItem("user");
+            storge.remove("user");
             this.$router.push({path:'/'});
           },
           //如果在首页user为空  那么就跳转到登录页，反之留在Home页
           home(){
-            var user = sessionStorage.getItem("user");
+            var user = storge.get("user");
             if(user==null){
               this.$router.push({path:'/'})
             }else{
