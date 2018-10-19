@@ -19,7 +19,6 @@ import 'mint-ui/lib/style.css'
 import Vuex from 'vuex' //引入状态管理
 import store from './store/store'
 Vue.use(Vuex) ;
-
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

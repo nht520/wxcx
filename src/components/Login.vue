@@ -53,7 +53,6 @@
 <script>
   import Dialog from "./Dialog";
   import Axios from "axios";
-
   export default {
     name:'Login',
     data(){
