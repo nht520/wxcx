@@ -1,11 +1,6 @@
 <template>
     <div id="Login">
         <!--登录背景-->
-        <mt-swipe :auto="4000">
-          <mt-swipe-item>1</mt-swipe-item>
-          <mt-swipe-item>2</mt-swipe-item>
-          <mt-swipe-item>3</mt-swipe-item>
-        </mt-swipe>
         <div class="Loginbj">
           <img src="../assets/images/bj.png"/>
         </div>
@@ -22,7 +17,6 @@
               label="请输入你的密码"
               v-model="password"
               name="password"
-              @keyup.enter="goLogin()"
             ></v-text-field>
             <button @click="goLogin()">登陆</button>
             <div class="activate">
@@ -115,11 +109,11 @@
     },
     created() {
       //判断是否按下了回车
-      var lett = this;
+      var _this = this;
       document.onkeydown = function(e) {
         var key = window.event.keyCode;
         if (key == 13) {
-          lett.goLogin()
+          _this.goLogin()
         }
       }
     },
