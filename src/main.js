@@ -4,9 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 外部UI插件'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
 // vuetify
 import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"

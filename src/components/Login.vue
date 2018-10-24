@@ -1,6 +1,11 @@
 <template>
     <div id="Login">
         <!--登录背景-->
+        <mt-swipe :auto="4000">
+          <mt-swipe-item>1</mt-swipe-item>
+          <mt-swipe-item>2</mt-swipe-item>
+          <mt-swipe-item>3</mt-swipe-item>
+        </mt-swipe>
         <div class="Loginbj">
           <img src="../assets/images/bj.png"/>
         </div>

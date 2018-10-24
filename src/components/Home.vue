@@ -18,6 +18,11 @@
             </v-flex>
           </v-layout>
         </div>
+        <mt-swipe :auto="4000">
+          <mt-swipe-item>1</mt-swipe-item>
+          <mt-swipe-item>2</mt-swipe-item>
+          <mt-swipe-item>3</mt-swipe-item>
+        </mt-swipe>
         <!--时间筛选-->
         <div class="HomeScreen">
           <v-layout row wrap>
@@ -61,8 +66,8 @@
     </div>
 </template>
 <script>
-  import Axios from 'axios'
-  import storge from '../storage/storage'
+  import Axios from 'axios';
+  import storge from '../storage/storage';
   import Datetime from "./Datetime";
   export default {
         name: "Home",
@@ -98,7 +103,7 @@
             const _date = new URLSearchParams();
                   _date.dateone=_this.$refs.dateone.value1;
                   _date.datetwo=_this.$refs.datetwo.value1;
-                  console.log(_date.date)
+                  console.log(_date.dateone)
                   // console.log(_date.date1)
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
