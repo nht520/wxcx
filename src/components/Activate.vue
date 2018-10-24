@@ -122,6 +122,9 @@
             } else if (_this.iphone =="") {
                 _this.text="请输入手机号"
                 _this.$refs.DialogClick.logClick()
+            } else if(_this.iphone.length < 11) {
+                _this.text="手机号码错误"
+                _this.$refs.DialogClick.logClick()
             } else if (_this.password =="") {
                 _this.text="请输入密码"
                 _this.$refs.DialogClick.logClick()
