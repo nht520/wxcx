@@ -18,11 +18,6 @@
             </v-flex>
           </v-layout>
         </div>
-        <mt-swipe :auto="4000">
-          <mt-swipe-item>1</mt-swipe-item>
-          <mt-swipe-item>2</mt-swipe-item>
-          <mt-swipe-item>3</mt-swipe-item>
-        </mt-swipe>
         <!--时间筛选-->
         <div class="HomeScreen">
           <v-layout row wrap>
@@ -43,7 +38,7 @@
       </div>
       <!--数据列表-->
       <div class="list">
-        <v-layout class="HomeList" v-for="item in HomeLise" :key="item.id">
+        <v-layout class="HomeList"  v-for="item in list" :key="item.aid" >
           <v-layout  row wrap >
             <v-flex xs9 >
               <v-card-text><span>{{item.title}}</span></v-card-text>
@@ -76,7 +71,8 @@
         },
         data () {
           return {
-            HomeLise:[],
+            active:'',
+            list:[],
             dateone:'',
             datetwo:''
           }
@@ -103,13 +99,13 @@
             const _date = new URLSearchParams();
                   _date.dateone=_this.$refs.dateone.value1;
                   _date.datetwo=_this.$refs.datetwo.value1;
-                  console.log(_date.dateone)
+                  // console.log(_date.dateone)
                   // console.log(_date.date1)
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
-                _this.HomeLise=res.data.result;
+                _this.list=res.data.result;
               },(err)=>{
                 console.log(err)
               })
@@ -125,6 +121,10 @@
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+  .active
+    background #f00
+    border 1px solid #fd7522
+    color #fff
   body
       background #f9fafb
   .header
