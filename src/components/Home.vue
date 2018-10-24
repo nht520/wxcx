@@ -22,13 +22,13 @@
         <div class="HomeScreen">
           <v-layout row wrap>
             <v-flex xs4>
-              <datetime ref="date"></datetime>
+              <datetime ref="dateone"></datetime>
             </v-flex>
             <v-flex xs1>
               <v-card-text class="px-0">至</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <datetime ref="date1"></datetime>
+              <datetime ref="datetwo"></datetime>
             </v-flex>
             <v-flex xs3>
               <button @click="inquire()">查询</button>
@@ -71,50 +71,9 @@
         },
         data () {
           return {
-            HomeLise:[
-              // {
-              //   id:1,
-              //   title:'(一品康) 宁尖牌芦荟软胶囊',
-              //   quantity:'1.00 罐',
-              //   official:'¥ 19.2134',
-              //   receivable:'¥ 50.21',
-              //   gross:'19.213',
-              // },
-              // {
-              //   id:2,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:3,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:4,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:5,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // }
-            ],
-            date:'',
-            date1:''
+            HomeLise:[],
+            dateone:'',
+            datetwo:''
           }
         },
         methods:{
@@ -137,9 +96,9 @@
             let _this = this;
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
-                  _date.date=_this.$refs.date.value1;
-                  _date.date1=_this.$refs.date1.value1;
-                  // console.log(_date.date)
+                  _date.dateone=_this.$refs.dateone.value1;
+                  _date.datetwo=_this.$refs.datetwo.value1;
+                  console.log(_date.date)
                   // console.log(_date.date1)
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)

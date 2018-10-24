@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-
 // import Home from './modules/Home'
 // export default new Vuex.Store({
 //
@@ -10,13 +9,11 @@ Vue.use(Vuex)
 //  }
 //
 // })
-
 /*1.state在vuex中用于存储数据*/
 const state={
   name:'',
   Pawd:'',
 }
-
 /*2.mutations里面放的是方法，方法主要用于改变state里面的数据*/
 const mutations={
 
@@ -26,18 +23,13 @@ const mutations={
   storePawd(state,data){
     state.Pawd = data;
   }
-
-
 }
-
 //优点类似计算属性   ，
 // 改变state里面的count数据的时候会触发 getters 里面的方法 获取新的值 (基本用不到)
 const getters= {
-
   // incCount:(state) =>{
   //     return
   //   }
-
 }
 // Action 基本没有用
 // Action 类似于 mutation，不同在于：
