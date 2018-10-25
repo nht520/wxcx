@@ -32,11 +32,11 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   .Headerone
-    position fixed
     width 100%
-    z-index 999
     background #fff
     overflow hidden
+    position fixed
+    top 0
     & .v-btn__content
       color #ffffff
   .theme--light.v-toolbar

@@ -46,6 +46,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   #Content
+    margin-top 20%
     width:100%
     text-align center
   #Content img
