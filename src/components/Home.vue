@@ -22,13 +22,13 @@
         <div class="HomeScreen">
           <v-layout row wrap>
             <v-flex xs4>
-              <datetime ref="date"></datetime>
+              <datetime ref="dateone"></datetime>
             </v-flex>
             <v-flex xs1>
               <v-card-text class="px-0">至</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <datetime ref="date1" ></datetime>
+              <datetime ref="datetwo"></datetime>
             </v-flex>
             <v-flex xs3>
               <button @click="inquire()">查询</button>
@@ -36,33 +36,36 @@
           </v-layout>
         </div>
       </div>
+
       <!--数据列表-->
       <div class="list">
-        <v-layout class="HomeList" v-for="item in HomeLise" :key="item.id">
-          <v-layout  row wrap >
-            <v-flex xs9 >
-              <v-card-text><span>{{item.title}}</span></v-card-text>
-            </v-flex>
-            <v-flex xs3>
-              <v-card-text><span> {{item.aid}}</span>盒</v-card-text>
-            </v-flex>
-            <v-flex xs7>
-              <v-card-text>实收：<span class="official">{{item.aid}}</span></v-card-text>
-            </v-flex>
-            <v-flex xs5>
-              <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-card-text>毛利：<span>{{item.dateline}}</span></v-card-text>
-            </v-flex>
-          </v-layout>
+        <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
+          <router-link :to="'/Details/'+item.aid" tag="li">
+            <v-layout  row wrap >
+              <v-flex xs9 >
+                <v-card-text><span>{{item.title}}</span></v-card-text>
+              </v-flex>
+              <v-flex xs3>
+                <v-card-text><span> {{item.aid}}</span>盒</v-card-text>
+              </v-flex>
+              <v-flex xs7>
+                <v-card-text>实收：<span class="official">{{item.aid}}</span></v-card-text>
+              </v-flex>
+              <v-flex xs5>
+                <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
+              </v-flex>
+              <v-flex xs12>
+                <v-card-text>毛利：<span>{{item.dateline}}</span></v-card-text>
+              </v-flex>
+            </v-layout>
+          </router-link>
         </v-layout>
       </div>
     </div>
 </template>
 <script>
-  import Axios from 'axios'
-  import storge from '../storage/storage'
+  import Axios from 'axios';
+  import storge from '../storage/storage';
   import Datetime from "./Datetime";
   export default {
         name: "Home",
@@ -71,50 +74,10 @@
         },
         data () {
           return {
-            HomeLise:[
-              // {
-              //   id:1,
-              //   title:'(一品康) 宁尖牌芦荟软胶囊',
-              //   quantity:'1.00 罐',
-              //   official:'¥ 19.2134',
-              //   receivable:'¥ 50.21',
-              //   gross:'19.213',
-              // },
-              // {
-              //   id:2,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:3,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:4,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // },
-              // {
-              //   id:5,
-              //   title:'(康美) 长生不老泉',
-              //   quantity:'5.00 盒',
-              //   official:'¥ 9.2134',
-              //   receivable:'¥ 20.21',
-              //   gross:'3.213',
-              // }
-            ],
-            date:'',
-            date1:''
+            active:'',
+            list:[],
+            dateone:'',
+            datetwo:''
           }
         },
         methods:{
@@ -137,15 +100,15 @@
             let _this = this;
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
-                  _date.date=_this.$refs.date.value1;
-                  _date.date1=_this.$refs.date1.value1;
-                  // console.log(_date.date)
-                  // console.log(_date.date1)
+                  _date.dateone=_this.$refs.dateone.value1;
+                  _date.datetwo=_this.$refs.datetwo.value1;
+                  // console.log(_date.dateone)
+                  // console.log(_date.datetwo)
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
-                _this.HomeLise=res.data.result;
+                _this.list=res.data.result;
               },(err)=>{
                 console.log(err)
               })
@@ -153,6 +116,8 @@
           }
         },
         mounted(){
+          //从store里获取数据
+          // this.spList=this.$store.state.list;
           this.home();
           //进入页面默认显示当天的记录
           this.inquire();
@@ -161,6 +126,10 @@
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+  .active
+    background #f00
+    border 1px solid #fd7522
+    color #fff
   body
       background #f9fafb
   .header

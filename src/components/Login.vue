@@ -17,7 +17,6 @@
               label="请输入你的密码"
               v-model="password"
               name="password"
-              @keyup.enter="goLogin()"
             ></v-text-field>
             <button @click="goLogin()">登陆</button>
             <div class="activate">
@@ -85,7 +84,10 @@
                 _param.append("dateline",_this.password);
           Axios.post('http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1',_param).then((res)=>{
             console.log(res);
-            if(res.data.result[0].catid=="20"){
+            //将数据存放在store
+            this.$store.commit('dtelsList',res.data.result);
+            // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
+            if(res.data.result[0].catid==="20"){
               storge.set("user",res.data.result);
               this.$router.push({path:'Home'})
             }else{
@@ -109,11 +111,11 @@
     },
     created() {
       //判断是否按下了回车
-      var lett = this;
+      var _this = this;
       document.onkeydown = function(e) {
         var key = window.event.keyCode;
         if (key == 13) {
-          lett.goLogin()
+          _this.goLogin()
         }
       }
     },

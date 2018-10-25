@@ -1,8 +1,8 @@
 <template>
   <div  id="Dialog" v-if="isShow">
-        <slot>
-          我是弹窗
-        </slot>
+      <slot>
+        我是弹窗
+      </slot>
   </div>
 </template>
 <script>
@@ -18,7 +18,7 @@
           this.isShow = true,
           setTimeout(() => {
             this.isShow = false
-          }, 1500)
+          }, 2500)
         },
       }
     }

@@ -4,9 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 外部UI插件'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
 // vuetify
 import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"
@@ -16,9 +13,15 @@ import Mint from 'mint-ui';
 Vue.use(Mint);
 import 'mint-ui/lib/style.css'
 
-import Vuex from 'vuex' //引入状态管理
+//引入状态管理
+import Vuex from 'vuex'
 import store from './store/store'
 Vue.use(Vuex) ;
+
+//请求数据
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

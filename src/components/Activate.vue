@@ -30,7 +30,8 @@
             </v-flex>
             <v-flex xs4>
               <v-card-text class="px-0">
-                <button class="verification" @click="acquire()">免费获取</button>
+                <button class="verification" v-show="show" @click="acquire()">免费获取</button>
+                <button class="verification" v-show="!show"  v-text="time"></button>
               </v-card-text>
             </v-flex>
           </v-layout>
@@ -55,7 +56,7 @@
       </div>
       <!--弹出层-->
       <Dialog ref="DialogClick">
-        <span v-text="activetext"></span>
+        <span v-text="text"></span>
       </Dialog>
     </div>
 </template>
@@ -75,36 +76,60 @@
             iphone:'',
             activ:'',
             password:'',
-            activetext:''
+            show:true,
+            text:'',
+            time:""
+          }
+        },
+        created() {
+          //判断是否按下了回车
+          var _this = this;
+          document.onkeydown = function(e) {
+            var key = window.event.keyCode;
+            if (key == 13) {
+              _this.activate()
+            }
           }
         },
         methods:{
-
           acquire(){
             let _this = this;
-            if (_this.iphone ==""){
-              _this.activetext="请输入手机号"
+            if (_this.iphone === ""){
+              _this.text="请输入手机号"
               //调用子组件的logClick方法
               _this.$refs.DialogClick.logClick()
+            }else if(_this.iphone.length < 11){
+              alert("手机号码错误")
+            } else if(_this.iphone.length === 11){
+              this.show=false;
+              this.time=6;
+              var auth_time = setInterval(()=>{
+                this.time--;
+                  if(this.time<=0){
+                    this.show=true;
+                    //清除定时器
+                    clearInterval(auth_time);
+                }
+              },1000);
             }
           },
           activate(){
             let _this = this;
             if (_this.username ==""){
-                _this.activetext="请输入账号"
+                _this.text="请输入账号"
                 //调用子组件的logClick方法
                 _this.$refs.DialogClick.logClick()
             } else if (_this.iphone =="") {
-                _this.activetext="请输入手机号"
+                _this.text="请输入手机号"
                 _this.$refs.DialogClick.logClick()
-            } else if (_this.activ ==""){
-                _this.activetext="请输入验证码"
+            } else if(_this.iphone.length < 11) {
+                _this.text="手机号码错误"
                 _this.$refs.DialogClick.logClick()
             } else if (_this.password =="") {
-                _this.activetext="请输入密码"
+                _this.text="请输入密码"
                 _this.$refs.DialogClick.logClick()
             }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
-              _this.activetext="密码在6-12位英文数字之间"
+              _this.text="密码在6-12位英文数字之间"
               _this.$refs.DialogClick.logClick()
             }
           }

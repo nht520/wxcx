@@ -6,6 +6,7 @@ import Dialog from '@/components/Dialog'
 import Activate from '@/components/Activate'
 import Find from '@/components/Find'
 import Home from '@/components/Home'
+import Details from '@/components/Details'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -18,6 +19,11 @@ export default new Router({
       path: '/Home',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/Details/:aid',
+      name: 'Details',
+      component: Details
     },
     {
       path: '/Layout',

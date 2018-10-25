@@ -6,14 +6,9 @@
           <v-btn icon>
             <v-icon  @click="back">chevron_left</v-icon>
           </v-btn>
-          <v-toolbar-title class="titleText">{{text}}</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <!--<v-btn icon>-->
-            <!--<v-icon >more_vert</v-icon>-->
-          <!--</v-btn>-->
+          <v-toolbar-title class="titleText">{{toubu}}</v-toolbar-title>
         </v-toolbar>
       </div>
-      <!--弹出层-->
     </v-card>
   </div>
 </template>
@@ -24,9 +19,10 @@
     },
     data (){
       return{
+        // title:"我是头部",
       }
     },
-    props: ['text'], // 直接简写方式，不指定类型
+    props: ['toubu'], // 直接简写方式，不指定类型
     methods:{
       back(){
         this.$router.go(-1);//返回上一层
