@@ -67,11 +67,11 @@
     methods: {
       goLogin(){
         let _this = this;
-        if(_this.username ==''){
+        if(_this.username ===''){
             _this.text="请输入用户名"
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
-        }else if(_this.password == ''){
+        }else if(_this.password === ''){
             _this.text="请输入密码"
             _this.$refs.DialogClick.logClick()
         }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
@@ -82,12 +82,13 @@
           const _param = new URLSearchParams();
                 _param.append("username",_this.username);
                 _param.append("dateline",_this.password);
-          Axios.post('http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1',_param).then((res)=>{
+          var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+          Axios.post(api,_param).then((res)=>{
             console.log(res);
-            //将数据存放在store
-            this.$store.commit('dtelsList',res.data.result);
-            // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
             if(res.data.result[0].catid==="20"){
+              //将数据存放在store
+              // this.$store.commit('dtelsList',res.data.result);
+              // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
               storge.set("user",res.data.result);
               this.$router.push({path:'Home'})
             }else{

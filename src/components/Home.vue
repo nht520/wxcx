@@ -67,6 +67,7 @@
   import Axios from 'axios';
   import storge from '../storage/storage';
   import Datetime from "./Datetime";
+  import { mapGetters } from 'vuex'
   export default {
         name: "Home",
         components: {
@@ -107,7 +108,7 @@
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
-                console.log(res);
+                // console.log(res);
                 _this.list=res.data.result;
               },(err)=>{
                 console.log(err)

@@ -34,7 +34,7 @@
       requestData(aid){
         var api='http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid='+aid;
         this.$http.get(api).then((res)=>{
-          console.log(res);
+          // console.log(res);
           this.list=res.body.result[0];
         }).catch(err=>{
           console.log(err)
@@ -47,8 +47,10 @@
 <style lang="stylus" rel="stylesheet/stylus">
   #Content
     margin-top 20%
-    width:100%
-    text-align center
-  #Content img
     width 100%
+    text-align center
+    padding 0% 3%
+  #Content img
+    width 90%
+
 </style>
