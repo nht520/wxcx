@@ -28,7 +28,7 @@
               <v-card-text class="px-0">至</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <datetime ref="date1"></datetime>
+              <datetime ref="date1" ></datetime>
             </v-flex>
             <v-flex xs3>
               <button @click="inquire()">查询</button>

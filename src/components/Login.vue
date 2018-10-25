@@ -47,7 +47,6 @@
             <span v-text="text"></span>
         </Dialog>
       </transition>
-  
     </div>
 </template>
 <script>
