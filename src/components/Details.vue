@@ -26,9 +26,9 @@
       //  获取git传值
       //   console.log(this.$route.query);
       var aid=this.$route.params.aid;
-      //调用this方法
+      //调用requestData方法
       this.requestData(aid);
-      console.log(aid)
+      // console.log(aid)
     },
     methods:{
       requestData(aid){
@@ -45,6 +45,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  body
+    background #ffffff
   #Content
     margin-top 20%
     width 100%

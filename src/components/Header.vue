@@ -6,7 +6,7 @@
           <v-btn icon>
             <v-icon  @click="back">chevron_left</v-icon>
           </v-btn>
-          <v-toolbar-title class="titleText">{{toubu}}</v-toolbar-title>
+          <v-toolbar-title class="titleText">{{headtext}}</v-toolbar-title>
         </v-toolbar>
       </div>
     </v-card>
@@ -19,10 +19,10 @@
     },
     data (){
       return{
-        // title:"我是头部",
+        // toubu:"我是头部",
       }
     },
-    props: ['toubu'], // 直接简写方式，不指定类型
+    props: ['headtext'], // 直接简写方式，不指定类型
     methods:{
       back(){
         this.$router.go(-1);//返回上一层

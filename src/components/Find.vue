@@ -1,7 +1,7 @@
 <template>
   <div class="Activate">
     <!--引用头部组件-->
-    <Header class="Header"  :text="title"></Header>
+    <Header class="Header"  :headtext="title"></Header>
     <!--from input-->
     <div class="ActivateFrom">
         <v-text-field
