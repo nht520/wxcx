@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :toubu="toubu"></Header>
+    <Header :headtext="toubu"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
       <div v-html="list.content"></div>
