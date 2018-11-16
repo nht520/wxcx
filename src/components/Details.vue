@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :headtext="toubu"></Header>
+    <Header :headtext="title"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
       <div v-html="list.content"></div>
@@ -17,7 +17,7 @@
     },
     data(){
       return{
-        toubu:"详情",
+        title:"",
         list:[],
       }
     },
@@ -34,8 +34,9 @@
       requestData(aid){
         var api='http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid='+aid;
         this.$http.get(api).then((res)=>{
-          // console.log(res);
+          console.log(res);
           this.list=res.body.result[0];
+          this.title=res.body.result[0].title;
         }).catch(err=>{
           console.log(err)
         })
