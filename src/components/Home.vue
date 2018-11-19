@@ -67,7 +67,6 @@
   import Axios from 'axios';
   import storge from '../storage/storage';
   import Datetime from "./Datetime";
-  import { mapGetters } from 'vuex'
   export default {
         name: "Home",
         components: {
@@ -87,7 +86,7 @@
             storge.remove("user");
             this.$router.push({path:'/'});
           },
-          //如果在首页user为空  那么就跳转到登录页，反之留在Home页
+          //刷新的时候如果get user为空 为空  那么就跳转到登录页，反之留在Home页
           home(){
             var user = storge.get("user");
             if(user==null){
@@ -108,7 +107,7 @@
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
-                // console.log(res);
+                console.log(res);
                 _this.list=res.data.result;
               },(err)=>{
                 console.log(err)

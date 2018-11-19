@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :toubu="toubu"></Header>
+    <Header :toubu="list.title"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
       <div v-html="list.content"></div>
@@ -17,7 +17,7 @@
     },
     data(){
       return{
-        toubu:"详情",
+        title:"",
         list:[],
       }
     },
