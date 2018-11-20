@@ -8,8 +8,8 @@
               <v-toolbar>
                 <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
                 <v-icon>fab fa-amazon</v-icon>
-                <v-toolbar-title>重庆市渝中区</v-toolbar-title>
-                <v-toolbar-title>华神坨</v-toolbar-title>
+                <v-toolbar-title>{{deptName}}</v-toolbar-title>
+                <v-toolbar-title>{{realName}}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon @click="logout()">
                   退出
@@ -25,7 +25,7 @@
               <datetime ref="dateone"></datetime>
             </v-flex>
             <v-flex xs1>
-              <v-card-text class="px-0">至</v-card-text>
+              <v-card-text class="px-0" ref="222">至</v-card-text>
             </v-flex>
             <v-flex xs4>
               <datetime ref="datetwo"></datetime>
@@ -36,7 +36,6 @@
           </v-layout>
         </div>
       </div>
-
       <!--数据列表-->
       <div class="list">
         <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
@@ -46,16 +45,16 @@
                 <v-card-text><span>{{item.title}}</span></v-card-text>
               </v-flex>
               <v-flex xs3>
-                <v-card-text><span> {{item.aid}}</span>盒</v-card-text>
+                <v-card-text><span> {{item.catid}}</span>盒</v-card-text>
               </v-flex>
               <v-flex xs7>
-                <v-card-text>实收：<span class="official">{{item.aid}}</span></v-card-text>
+                <v-card-text>实收：<span class="official">{{item.dateline}}</span></v-card-text>
               </v-flex>
               <v-flex xs5>
                 <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
               </v-flex>
               <v-flex xs12>
-                <v-card-text>毛利：<span>{{item.dateline}}</span></v-card-text>
+                <v-card-text>毛利：<span>{{item.aid}}</span></v-card-text>
               </v-flex>
             </v-layout>
           </router-link>
@@ -74,6 +73,8 @@
         },
         data () {
           return {
+            deptName:"1",
+            realName:"2",
             active:'',
             list:[],
             dateone:'',
@@ -100,10 +101,10 @@
             let _this = this;
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
-                  _date.dateone=_this.$refs.dateone.value1;
-                  _date.datetwo=_this.$refs.datetwo.value1;
-                  // console.log(_date.dateone)
-                  // console.log(_date.datetwo)
+                  _date.startTime  =_this.$refs.dateone.value1;
+                  _date.endTime=_this.$refs.datetwo.value1;
+                  console.log(_date.startTime)
+                  console.log(_date.endTime)
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
@@ -113,16 +114,28 @@
                 console.log(err)
               })
 
-          }
+          },
+          name(){
+            //获取存储的数据放在页面
+            this.user = storge.get("user");
+            // this.deptName=this.user.deptName;
+            // this.realName=this.user.realName;
+            if(this.user==null){
+                this.$router.push({path:'/'})
+              }else{
+                this.$router.push({path:'Home'})
+              }
+            },
         },
         mounted(){
+          this.name();
           //从store里获取数据
           // this.spList=this.$store.state.list;
+          // console.log(this.spList)
           this.home();
           //进入页面默认显示当天的记录
           this.inquire();
         }
-
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">

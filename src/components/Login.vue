@@ -68,14 +68,14 @@
       goLogin(){
         let _this = this;
         if(_this.username ===''){
-            _this.text="请输入用户名"
+            _this.text="请输入用户名";
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
-        }else if(_this.password === ''){
-            _this.text="请输入密码"
+        }else if(_this.password==null  || _this.password === ''){
+            _this.text="请输入密码";
             _this.$refs.DialogClick.logClick()
         }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
-            _this.text="密码在6-12位英文数字之间"
+            _this.text="密码在6-12位英文数字之间";
             _this.$refs.DialogClick.logClick()
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
@@ -91,8 +91,8 @@
               // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
               storge.set("user",res.data.result);
               this.$router.push({path:'Home'})
-            }else{
-              _this.text=res.data.msg
+            }else if(res.data ){
+              _this.text=res.data.msg;
               _this.$refs.DialogClick.logClick()
             }
           },(err)=>{
@@ -115,7 +115,7 @@
       var _this = this;
       document.onkeydown = function(e) {
         var key = window.event.keyCode;
-        if (key == 13) {
+        if (key === 13) {
           _this.goLogin()
         }
       }

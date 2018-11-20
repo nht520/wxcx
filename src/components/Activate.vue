@@ -1,7 +1,7 @@
 <template>
     <div class="Activate">
       <!--引用头部组件-->
-      <Header class="Header"  :text="title"></Header>
+      <Header class="Header" :headtext="title"></Header>
       <!--from input-->
       <div class="ActivateFrom">
           <v-text-field
@@ -63,6 +63,7 @@
 <script>
     import Header from "./Header";
     import Dialog from "./Dialog";
+    import Axios from "axios";
     export default {
         name: "Activate",
         components: {
@@ -115,6 +116,10 @@
           },
           activate(){
             let _this = this;
+            //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
+            const _name = new URLSearchParams();
+            _name.empName=_this.username;
+            _name.pssword=_this.password;
             if (_this.username ==""){
                 _this.text="请输入账号"
                 //调用子组件的logClick方法
@@ -131,6 +136,13 @@
             }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
               _this.text="密码在6-12位英文数字之间"
               _this.$refs.DialogClick.logClick()
+            }else {
+              let api =("http://47.92.77.196:9099/sale/accountActive");
+              Axios.post(api,_name).then((res)=>{
+                console.log(res)
+              },(err)=>{
+                console.log(err)
+              })
             }
           }
         }
