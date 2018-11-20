@@ -1,27 +1,32 @@
 <template>
   <div>
-<<<<<<< HEAD
     <Header :toubu="list.title"></Header>
-=======
     <Header :headtext="title"></Header>
->>>>>>> 06d31fb3844c3d0b3a1c793a34c47535c570ffac
+    <Header :headtext="list.title"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
       <div v-html="list.content"></div>
     </div>
+    <!--记载动画-->
+    <Lodding ref="lodClick">
+      <span v-text="lodingtext"></span>
+    </Lodding>
   </div>
 </template>
 
 <script>
   import Header from "./Header";
+  import Lodding from "./Lodding";
   export default {
     name: "Details",
     components: {
+      Lodding,
       Header
     },
     data(){
       return{
         title:"",
+        lodingtext:"",
         list:[],
       }
     },
@@ -36,11 +41,14 @@
     },
     methods:{
       requestData(aid){
+        let _this = this;
+        _this.$refs.lodClick.logClick();
+        _this.lodingtext="数据加载中...";
         var api='http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid='+aid;
         this.$http.get(api).then((res)=>{
           console.log(res);
+          _this.$refs.lodClick.lodClick();
           this.list=res.body.result[0];
-          this.title=res.body.result[0].title;
         }).catch(err=>{
           console.log(err)
         })

@@ -46,29 +46,38 @@
             <span v-text="text"></span>
         </Dialog>
       </transition>
+      <!--加载动画-->
+      <Lodding ref="lodClick">
+        <span v-text="lodingtext"></span>
+      </Lodding>
     </div>
 </template>
 <script>
   import Dialog from "./Dialog";
   import Axios from "axios";
   import storge from '../storage/storage'
+  import Loading from "vux/src/components/loading/index";
+  import Lodding from "./Lodding";
   export default {
     name:'Login',
     data(){
       return{
         username:'',
         password:'',
-        text:''
+        text:'',
+        lodingtext:''
       }
     },
     components: {
+      Lodding,
+      Loading,
       Dialog
     },
     methods: {
       goLogin(){
         let _this = this;
         if(_this.username ===''){
-            _this.text="请输入用户名";
+          _this.text="请输入用户名";
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
         }else if(_this.password==null  || _this.password === ''){
@@ -82,9 +91,13 @@
           const _param = new URLSearchParams();
                 _param.append("username",_this.username);
                 _param.append("dateline",_this.password);
+          // 加载动画
+            _this.$refs.lodClick.logClick();
+            _this.lodingtext="数据加载中...";
           var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
           Axios.post(api,_param).then((res)=>{
             console.log(res);
+            _this.$refs.lodClick.lodClick();
             if(res.data.result[0].catid==="20"){
               //将数据存放在store
               // this.$store.commit('dtelsList',res.data.result);

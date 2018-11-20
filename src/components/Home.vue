@@ -22,13 +22,13 @@
         <div class="HomeScreen">
           <v-layout row wrap>
             <v-flex xs4>
-              <datetime ref="dateone"></datetime>
+              <Datetime ref="dateone"></Datetime>
             </v-flex>
             <v-flex xs1>
               <v-card-text class="px-0" ref="222">至</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <datetime ref="datetwo"></datetime>
+              <Datetime ref="datetwo"></Datetime>
             </v-flex>
             <v-flex xs3>
               <button @click="inquire()">查询</button>
@@ -60,23 +60,31 @@
           </router-link>
         </v-layout>
       </div>
+      <!--数据加载中-->
+      <Lodding ref="lodClick">
+        <span v-text="lodingtext"></span>
+      </Lodding>
     </div>
 </template>
 <script>
   import Axios from 'axios';
   import storge from '../storage/storage';
   import Datetime from "./Datetime";
+  import Lodding from "./Lodding";
   export default {
         name: "Home",
         components: {
+          Lodding,
           Datetime
         },
         data () {
           return {
+            lodingtext:'',
             deptName:"1",
             realName:"2",
             active:'',
             list:[],
+            page: 1,
             dateone:'',
             datetwo:''
           }
@@ -99,17 +107,26 @@
           //查询方法
           inquire(){
             let _this = this;
+            let axiosDate = new Date();
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
                   _date.startTime  =_this.$refs.dateone.value1;
                   _date.endTime=_this.$refs.datetwo.value1;
-                  console.log(_date.startTime)
-                  console.log(_date.endTime)
+                  console.log(_date.startTime);
+                  console.log(_date.endTime);
+            _this.$refs.lodClick.logClick();
+            _this.lodingtext="数据加载中...";
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
+                console.log(res.data.result.length);
+                _this.$refs.lodClick.lodClick();
                 _this.list=res.data.result;
+                //点击刷新的时候追加数据
+                // _this.list = this.list.concat(res.data.result);
+                ++this.page;
+                console.log(_this.page)
               },(err)=>{
                 console.log(err)
               })
