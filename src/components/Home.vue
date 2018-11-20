@@ -60,6 +60,10 @@
           </router-link>
         </v-layout>
       </div>
+      <!--数据加载中-->
+      <Lodding ref="lodClick">
+        <span v-text="lodingtext"></span>
+      </Lodding>
     </div>
 </template>
 <script>
@@ -67,13 +71,16 @@
   import storge from '../storage/storage';
   import Datetime from "./Datetime";
   import { mapGetters } from 'vuex'
+  import Lodding from "./Lodding";
   export default {
         name: "Home",
         components: {
+          Lodding,
           Datetime
         },
         data () {
           return {
+            lodingtext:'',
             deptName:"1",
             realName:"2",
             active:'',
@@ -100,16 +107,21 @@
           //查询方法
           inquire(){
             let _this = this;
+            let axiosDate = new Date();
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
                   _date.startTime  =_this.$refs.dateone.value1;
                   _date.endTime=_this.$refs.datetwo.value1;
-                  console.log(_date.startTime)
-                  console.log(_date.endTime)
+                  console.log(_date.startTime);
+                  console.log(_date.endTime);
+            _this.$refs.lodClick.logClick();
+            _this.lodingtext="数据加载中";
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
+                // _this.$refs.lodClick.logClick();
+                // _this.lodingtext="数据加载中";
                 _this.list=res.data.result;
               },(err)=>{
                 console.log(err)

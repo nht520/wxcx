@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :headtext="title"></Header>
+    <Header :headtext="list.title"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
       <div v-html="list.content"></div>
@@ -36,7 +36,6 @@
         this.$http.get(api).then((res)=>{
           console.log(res);
           this.list=res.body.result[0];
-          this.title=res.body.result[0].title;
         }).catch(err=>{
           console.log(err)
         })
