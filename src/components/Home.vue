@@ -84,7 +84,7 @@
             realName:"2",
             active:'',
             list:[],
-            page: 1,
+            // page: 1,
             dateone:'',
             datetwo:''
           }
@@ -107,7 +107,6 @@
           //查询方法
           inquire(){
             let _this = this;
-            let axiosDate = new Date();
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
                   _date.startTime  =_this.$refs.dateone.value1;
@@ -125,8 +124,7 @@
                 _this.list=res.data.result;
                 //点击刷新的时候追加数据
                 // _this.list = this.list.concat(res.data.result);
-                ++this.page;
-                console.log(_this.page)
+                // ++this.page;
               },(err)=>{
                 console.log(err)
               })

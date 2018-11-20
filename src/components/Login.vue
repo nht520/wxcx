@@ -19,6 +19,8 @@
               name="password"
             ></v-text-field>
             <button @click="goLogin()">登陆</button>
+            <!--<span ref="btcx">查询</span>-->
+            <!--<button @click="chaxun()">查询</button>-->
             <div class="activate">
                 <v-layout row wrap>
                   <v-flex xs5>
@@ -74,6 +76,11 @@
       Dialog
     },
     methods: {
+      // chaxun(){
+      //用ref获取值
+      //   this.log=this.$refs.btcx.innerHTML;
+      //   console.log(this.log)
+      // },
       goLogin(){
         let _this = this;
         if(_this.username ===''){
