@@ -148,7 +148,7 @@
                 // //点击刷新的时候追加数据
                 ++this.page;
                 _this.list = this.list.concat(res.data.result);
-                if(res.data.result.length<20){
+                if(res.data.result.length<=0){
                   this.request=true; //true 请求终止
                   _this.$refs.DialogClick.logClick();
                   _this.lodingtext="已经没有数据了哦！";
