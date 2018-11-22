@@ -37,33 +37,51 @@
         </div>
       </div>
       <!--数据列表-->
-      <div class="list">
-        <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
-          <router-link :to="'/Details/'+item.aid" tag="li">
-            <v-layout  row wrap >
-              <v-flex xs9 >
-                <v-card-text><span>{{item.title}}</span></v-card-text>
-              </v-flex>
-              <v-flex xs3>
-                <v-card-text><span> {{item.catid}}</span>盒</v-card-text>
-              </v-flex>
-              <v-flex xs7>
-                <v-card-text>实收：<span class="official">{{item.dateline}}</span></v-card-text>
-              </v-flex>
-              <v-flex xs5>
-                <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
-              </v-flex>
-              <v-flex xs12>
-                <v-card-text>毛利：<span>{{item.aid}}</span></v-card-text>
-              </v-flex>
-            </v-layout>
-          </router-link>
-        </v-layout>
+      <div class="hlist">
+        <mt-loadmore :top-method="loadTop"   ref="loadmore" >
+          <ul
+            ref="loadmore"
+            :top-method="loadTop"
+            v-infinite-scroll="loadMore"
+            infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10"
+          >
+            <li>
+              <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
+                <router-link :to="'/Details/'+item.aid" tag="li">
+                  <v-layout  row wrap >
+                    <v-flex xs9 >
+                      <v-card-text><span>{{item.title}}</span></v-card-text>
+                    </v-flex>
+                    <v-flex xs3>
+                      <v-card-text><span> {{item.catid}}</span>盒</v-card-text>
+                    </v-flex>
+                    <v-flex xs7>
+                      <v-card-text>实收：<span class="official">{{item.dateline}}</span></v-card-text>
+                    </v-flex>
+                    <v-flex xs5>
+                      <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-card-text>毛利：<span>{{item.aid}}</span></v-card-text>
+                    </v-flex>
+                  </v-layout>
+                </router-link>
+              </v-layout>
+            </li>
+          </ul>
+        </mt-loadmore>
       </div>
       <!--数据加载中-->
       <Lodding ref="lodClick">
         <span v-text="lodingtext"></span>
       </Lodding>
+      <!--提示-->
+      <transition name="fade">
+        <Dialog  ref="DialogClick">
+          <span v-text="retext"></span>
+        </Dialog>
+      </transition>
     </div>
 </template>
 <script>
@@ -71,66 +89,80 @@
   import storge from '../storage/storage';
   import Datetime from "./Datetime";
   import Lodding from "./Lodding";
+  import Dialog from "./Dialog";
   export default {
         name: "Home",
         components: {
+          Dialog,
           Lodding,
           Datetime
         },
         data () {
           return {
+            request:false,
             lodingtext:'',
+            retext:"",
             deptName:"1",
             realName:"2",
             active:'',
             list:[],
-            // page: 1,
+            page: 1,
             dateone:'',
             datetwo:''
           }
         },
         methods:{
+          //触发 store
+          loadTop () { //组件提供的下拉触发方法
+            //下拉刷新
+            this.inquire();
+            //反转数据：
+            // this.list.reverse();
+            this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位
+          },
+          loadMore() {
+            this.inquire();
+          },
           //点击清空rsessionStorage里面的user,退出登录
           logout(){
             storge.remove("user");
             this.$router.push({path:'/'});
           },
-          //刷新的时候如果get user为空 为空  那么就跳转到登录页，反之留在Home页
-          home(){
-            var user = storge.get("user");
-            if(user==null){
-              this.$router.push({path:'/'})
-            }else{
-              this.$router.push({path:'Home'})
-            }
-          },
           //查询方法
           inquire(){
             let _this = this;
+            this.request = true; //请求数据的开关
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
-                  _date.startTime  =_this.$refs.dateone.value1;
-                  _date.endTime=_this.$refs.datetwo.value1;
-                  console.log(_date.startTime);
-                  console.log(_date.endTime);
-            _this.$refs.lodClick.logClick();
-            _this.lodingtext="数据加载中...";
-            let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+                  _date.append("startTime",_this.$refs.dateone.value1);
+                  _date.append("endTime",_this.$refs.datetwo.value1);
+                  _this.$refs.lodClick.logClick();
+                  _this.lodingtext="数据加载中...";
+            let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page="+this.page;
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
-                _this.list=res.data.result;
-                //点击刷新的时候追加数据
-                // _this.list = this.list.concat(res.data.result);
-                // ++this.page;
+                // _this.list=res.data.result;
+                // //点击刷新的时候追加数据
+                ++this.page;
+                _this.list = this.list.concat(res.data.result);
+                if(res.data.result.length<20){
+                  this.request=true; //true 请求终止
+                  _this.$refs.DialogClick.logClick();
+                  _this.lodingtext="已经没有数据了哦！";
+                  this.show=false;
+                }else{
+                  this.request=false;//false 继续请求
+                }
               },(err)=>{
                 console.log(err)
               })
 
           },
-          name(){
+          home(){
+            //刷新的时候如果get user为空 为空  那么就跳转到登录页，反之留在Home页
             //获取存储的数据放在页面
             this.user = storge.get("user");
             // this.deptName=this.user.deptName;
@@ -143,13 +175,12 @@
             },
         },
         mounted(){
-          this.name();
           //从store里获取数据
-          // this.spList=this.$store.state.list;
+          // this.list=this.$store.state.list;
           // console.log(this.spList)
           this.home();
           //进入页面默认显示当天的记录
-          this.inquire();
+          // this.inquire();
         }
     }
 </script>
@@ -164,6 +195,10 @@
       position fixed
       width 100%
       top 0
+  .hlist
+      margin-top 36%
+  .hlist ul
+      padding 0
   .list
       margin-top 36%
   .HomeHeader .theme--light.v-toolbar

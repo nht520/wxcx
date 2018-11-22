@@ -33,7 +33,7 @@
     background rgba(0, 0, 0, 0.69)
     border-radius 3px
     color #ffffff
-    position absolute
+    position fixed
     top 50%
     text-align center
     left 50%

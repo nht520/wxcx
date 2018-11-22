@@ -104,14 +104,14 @@
           var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
           Axios.post(api,_param).then((res)=>{
             console.log(res);
-            _this.$refs.lodClick.lodClick();
             if(res.data.result[0].catid==="20"){
               //将数据存放在store
               // this.$store.commit('dtelsList',res.data.result);
               // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
               storge.set("user",res.data.result);
               this.$router.push({path:'Home'})
-            }else if(res.data ){
+            }else if(res.data){
+              //如果返回错误提示
               _this.text=res.data.msg;
               _this.$refs.DialogClick.logClick()
             }
