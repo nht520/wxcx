@@ -8,8 +8,8 @@
               <v-toolbar>
                 <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
                 <v-icon>fab fa-amazon</v-icon>
-                <v-toolbar-title>{{deptName}}</v-toolbar-title>
-                <v-toolbar-title>{{realName}}</v-toolbar-title>
+                <v-toolbar-title>{{head.aid}}</v-toolbar-title>
+                <v-toolbar-title>{{head.catid}}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon @click="logout()">
                   退出
@@ -38,6 +38,7 @@
       </div>
       <!--数据列表-->
       <div class="hlist">
+
         <mt-loadmore :top-method="loadTop"   ref="loadmore" >
           <ul
             ref="loadmore"
@@ -106,6 +107,7 @@
             realName:"2",
             active:'',
             list:[],
+            head:[],
             page: 1,
             dateone:'',
             datetwo:''
@@ -145,6 +147,7 @@
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
                 // _this.list=res.data.result;
+                _this.head=res.data.result[0];
                 // //点击刷新的时候追加数据
                 ++this.page;
                 _this.list = this.list.concat(res.data.result);
@@ -227,10 +230,10 @@
           padding 0px
   .HomeList
       background #ffffff
-      margin-top 2%
-      padding 4% 15px
+      margin-bottom 2%
+      padding 4% 1%
       & .v-card__text
-         padding 3% 0%
+         padding 6px 10px
       & .xs3
          text-align right
       & .xs9

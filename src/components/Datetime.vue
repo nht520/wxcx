@@ -31,7 +31,7 @@
       },
       handleChange(value) {
         this.value = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
-        this.value1 = this.value
+        this.value1 = this.value;
         //this.show = true;
         // Toast({
         //   message: '已选择 ' + value.toString(),
@@ -41,7 +41,8 @@
     },
     mounted(){
       var  value = new Date();
-      this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
+      //默认显示提前一天的数据
+      this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+(value.getDate()-1);
     },
   }
 </script>

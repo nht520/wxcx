@@ -106,7 +106,7 @@
             console.log(res);
             if(res.data.result[0].catid==="20"){
               //将数据存放在store
-              this.$store.commit('dtelsList',res.data.result);
+              this.$store.commit('dtList',res.data.result);
               // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
               storge.set("user",res.data.result);
               this.$router.push({path:'Home'})

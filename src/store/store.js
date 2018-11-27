@@ -16,7 +16,7 @@ const state={
 /*2.mutations里面放的是方法，方法主要用于改变state里面的数据*/
 const mutations={
 
-  dtelsList(state,data){
+  dtList(state,data){
     state.list = data;
   }
 

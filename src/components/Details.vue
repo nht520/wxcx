@@ -1,7 +1,5 @@
 <template>
   <div>
-    <Header :toubu="list.title"></Header>
-    <Header :headtext="title"></Header>
     <Header :headtext="list.title"></Header>
     <div id="Content">
       <h2>{{list.title}}</h2>
