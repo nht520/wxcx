@@ -38,7 +38,6 @@
       </div>
       <!--数据列表-->
       <div class="hlist">
-
         <mt-loadmore :top-method="loadTop"   ref="loadmore" >
           <ul
             ref="loadmore"

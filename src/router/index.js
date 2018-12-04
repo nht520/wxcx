@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/components/Layout'
-import login from '@/components/login'
+import Login from '@/components/Login'
 import Dialog from '@/components/Dialog'
 import Activate from '@/components/Activate'
 import Find from '@/components/Find'
@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: login
+      name: 'Login',
+      component: Login
     },
     {
       path: '/Home',
