@@ -7,6 +7,7 @@ import Activate from '@/components/Activate'
 import Find from '@/components/Find'
 import Home from '@/components/Home'
 import Details from '@/components/Details'
+import Bottom from '@/components/Bottom'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -17,11 +18,6 @@ export default new Router({
       component: Login
     },
     {
-      path: '/Home',
-      name: 'Home',
-      component: Home,
-    },
-    {
       path: '/Details/:aid',
       name: 'Details',
       component: Details
@@ -29,7 +25,24 @@ export default new Router({
     {
       path: '/Layout',
       name: 'Layout',
-      component: Layout
+      component: Layout,
+    },
+    {
+      path: '/Bottom',
+      name: 'Bottom',
+      component: Bottom,
+      children:[
+        {
+          path: '/Home',
+          name: 'Homea',
+          component: Home,
+        },
+        {
+          path: '/Find',
+          name: 'Finda',
+          component: Find,
+        },
+      ]
     },
     {
       path: '/Dialog',

@@ -109,7 +109,7 @@
               this.$store.commit('dtList',res.data.result);
               // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
               storge.set("user",res.data.result);
-              this.$router.push({path:'Home'})
+              this.$router.push({path:'Bottom'})
             }else if(res.data){
               //如果返回错误提示
               _this.text=res.data.msg;

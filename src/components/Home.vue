@@ -109,6 +109,7 @@
             head:[],
             page: 1,
             dateone:'',
+            curHeight:0,
             datetwo:''
           }
         },
@@ -131,6 +132,8 @@
           },
           //查询方法
           inquire(){
+            //获取屏幕高度
+
             let _this = this;
             this.request = true; //请求数据的开关
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
@@ -197,8 +200,9 @@
       position fixed
       width 100%
       top 0
+      z-index 999
   .hlist
-      margin-top 36%
+      /*margin-top 36%*/
   .hlist ul
       padding 0
   .list

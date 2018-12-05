@@ -36,6 +36,7 @@
     background #fff
     overflow hidden
     position fixed
+    z-index 9999
     top 0
     & .v-btn__content
       color #ffffff
