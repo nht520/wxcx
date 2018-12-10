@@ -83,12 +83,16 @@
       // },
       goLogin(){
         let _this = this;
+        var patrn=/^(\w){6,20}$/;
         if(_this.username ===''){
           _this.text="请输入用户名";
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
-        }else if(_this.password==null  || _this.password === '' ||/^[\d\D]{6,12}$/.test(_this.password) === false){
+        }else if(_this.password==null  || _this.password === ''){
             _this.text="请输入密码";
+            _this.$refs.DialogClick.logClick()
+        }else if(_this.password.length<6){
+            _this.text="密码在6-12位英文数字之间";
             _this.$refs.DialogClick.logClick()
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
@@ -108,7 +112,7 @@
               storge.set("user",res.data.result);
               this.$router.push({path:'Bottom'})
             }else if(res.data){
-              //如果返回错误提示
+              //如果登录失败 就返回错误信息
               _this.text=res.data.msg;
               _this.$refs.DialogClick.logClick()
             }
