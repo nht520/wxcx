@@ -31,6 +31,7 @@ export default new Router({
       path: '/Bottom',
       name: 'Bottom',
       component: Bottom,
+      redirect:'/Home',
       children:[
         {
           path: '/Home',

@@ -87,11 +87,8 @@
           _this.text="请输入用户名";
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
-        }else if(_this.password==null  || _this.password === ''){
+        }else if(_this.password==null  || _this.password === '' ||/^[\d\D]{6,12}$/.test(_this.password) === false){
             _this.text="请输入密码";
-            _this.$refs.DialogClick.logClick()
-        }else if(/^[\d\D]{6,12}$/.test(_this.password) === false){
-            _this.text="密码在6-12位英文数字之间";
             _this.$refs.DialogClick.logClick()
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
@@ -103,7 +100,7 @@
             _this.lodingtext="数据加载中...";
           var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
           Axios.post(api,_param).then((res)=>{
-            console.log(res);
+            // console.log(res);
             if(res.data.result[0].catid==="20"){
               //将数据存放在store
               this.$store.commit('dtList',res.data.result);
