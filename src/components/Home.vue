@@ -145,7 +145,6 @@
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page="+this.page;
             Axios.post(api,_date)
               .then((res)=>{
-                console.log(res);
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
                 // _this.list=res.data.result;
@@ -200,7 +199,6 @@
       position fixed
       width 100%
       top 0
-      z-index 999
   .hlist
       /*margin-top 36%*/
   .hlist ul
