@@ -83,7 +83,6 @@
       // },
       goLogin(){
         let _this = this;
-        var patrn=/^(\w){6,20}$/;
         if(_this.username ===''){
           _this.text="请输入用户名";
             //调用子组件的logClick方法

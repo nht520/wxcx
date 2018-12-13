@@ -200,7 +200,7 @@
       width 100%
       top 0
   .hlist
-      /*margin-top 36%*/
+      margin-top 36%
   .hlist ul
       padding 0
   .list

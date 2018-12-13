@@ -10,7 +10,7 @@ import Details from '@/components/Details'
 import Bottom from '@/components/Bottom'
 Vue.use(Router)
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',

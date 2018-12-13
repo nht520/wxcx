@@ -30,7 +30,7 @@
           </v-flex>
           <v-flex xs4>
             <v-card-text class="px-0">
-              <button class="verification" v-show="show" @click="acquire()">免费获取</button>
+              <button class="verification" v-show="show" @click="acquire()" v-text="huoqu"></button>
               <button class="verification" v-show="!show"  v-text="time"></button>
             </v-card-text>
           </v-flex>
@@ -67,6 +67,7 @@
     data(){
       return{
         title:'找回密码',
+        huoqu:"免费获取",
         username:'',
         iphone:'',
         activ:'',
@@ -105,6 +106,7 @@
             if(this.time<=0){
               this.show=true;
               //清除定时器
+              this.huoqu="重新获取";
               clearInterval(auth_time);
             }
           },1000);

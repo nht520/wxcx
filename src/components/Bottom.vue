@@ -40,7 +40,7 @@
             botton:[
               {
                 id:0,
-                path:'/',
+                path:'/Home',
                 title:"首页",
                 icon:"fa fa-heart",
               },
