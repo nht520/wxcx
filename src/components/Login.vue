@@ -96,27 +96,42 @@
         }else{
           //把用户名  密码统一存在_param里面  把_param提交到后台
           const _param = new URLSearchParams();
-                _param.append("username",_this.username);
-                _param.append("dateline",_this.password);
+                _param.append("empName",_this.username);
+                _param.append("empPassword",_this.password);
           // 加载动画
-            _this.$refs.lodClick.logClick();
-            _this.lodingtext="数据加载中...";
-          var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+          //   _this.$refs.lodClick.logClick();
+          //   _this.lodingtext="数据加载中...";
+          // var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
+          var api ="http://md.9knx.com:9099/sale/login";
           Axios.post(api,_param).then((res)=>{
-            // console.log(res);
-            if(res.data.result[0].catid==="20"){
-              //将数据存放在store
-              this.$store.commit('dtList',res.data.result);
-              // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
-              storge.set("user",res.data.result);
-              this.$router.push({path:'Bottom'})
+            console.log(res);
+            if(res.status===200){
+              const code = res.data.status;
+              if( code === "1" ){
+                //将数据存放在store
+                _this.$store.commit('dtList',res.data.status);
+                // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
+                storge.set("user",res.data.status);
+                _this.$router.push({path:'Bottom'})
+              }else if( code === "0" ){
+                _this.text=res.data.message;
+                _this.$refs.DialogClick.logClick();
+              }else if( code === "2"){
+                _this.text=res.data.message;
+                _this.$refs.DialogClick.logClick();
+              }else{
+                _this.text=res.data.message;
+                _this.$refs.DialogClick.logClick();
+              }
             }else if(res.data){
               //如果登录失败 就返回错误信息
-              _this.text=res.data.msg;
-              _this.$refs.DialogClick.logClick()
+              _this.text=res.data.message;
+              _this.$refs.DialogClick.logClick();
             }
           },(err)=>{
             console.log(err);
+            _this.text="系统繁忙！";
+            _this.$refs.DialogClick.logClick();
           });
         }
       },

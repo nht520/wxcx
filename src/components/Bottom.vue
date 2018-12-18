@@ -52,7 +52,7 @@
               },
               {
                 id:2,
-                path:'/',
+                path:'http://w3.zaiyiqiba.com/love.php?make=1&id=534011',
                 title:"购物袋",
                 icon:"fa fa-heart",
               },
