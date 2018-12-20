@@ -109,9 +109,10 @@
               const code = res.data.status;
               if( code === "1" ){
                 //将数据存放在store
-                _this.$store.commit('dtList',res.data.status);
+                _this.$store.commit('dtList',res.data.data);
                 // this.$store.dispatch('toggleFollowPerson',{userId:this.user.userid})
-                storge.set("user",res.data.status);
+                //将数据存在storage
+                storge.set("user",res.data.data);
                 _this.$router.push({path:'Bottom'})
               }else if( code === "0" ){
                 _this.text=res.data.message;
@@ -130,7 +131,7 @@
             }
           },(err)=>{
             console.log(err);
-            _this.text="系统繁忙！";
+            _this.text=res.data.message;
             _this.$refs.DialogClick.logClick();
           });
         }

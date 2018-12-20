@@ -41,7 +41,7 @@
     & .v-btn__content
       color #ffffff
   .theme--light.v-toolbar
-    background #5c57e3
+    background-color #5c57e3
     text-align center
     color #ffffff
   .titleText

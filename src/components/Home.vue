@@ -8,8 +8,8 @@
               <v-toolbar>
                 <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
                 <v-icon>fab fa-amazon</v-icon>
-                <v-toolbar-title>{{head.aid}}</v-toolbar-title>
-                <v-toolbar-title>{{head.catid}}</v-toolbar-title>
+                <v-toolbar-title>{{realName}}</v-toolbar-title>
+                <v-toolbar-title>{{deptName}}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon @click="logout()">
                   退出
@@ -102,11 +102,10 @@
             request:false,
             lodingtext:'',
             retext:"",
-            deptName:"1",
-            realName:"2",
+            deptName:"",
+            realName:"",
             active:'',
             list:[],
-            head:[],
             page: 1,
             dateone:'',
             curHeight:0,
@@ -133,7 +132,6 @@
           //查询方法
           inquire(){
             //获取屏幕高度
-
             let _this = this;
             this.request = true; //请求数据的开关
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
@@ -147,18 +145,16 @@
               .then((res)=>{
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
-                // _this.list=res.data.result;
-                _this.head=res.data.result[0];
                 // //点击刷新的时候追加数据
                 ++this.page;
                 _this.list = this.list.concat(res.data.result);
                 if(res.data.result.length<=0){
-                  this.request=true; //true 请求终止
+                  this.request = true; //true 请求终止
                   _this.$refs.DialogClick.logClick();
                   _this.lodingtext="已经没有数据了哦！";
-                  this.show=false;
+                  alert("已经没有数据了哦");
                 }else{
-                  this.request=false;//false 继续请求
+                  this.request = false;//false 继续请求
                 }
               },(err)=>{
                 console.log(err)
@@ -167,10 +163,10 @@
           },
           home(){
             //刷新的时候如果get user为空 为空  那么就跳转到登录页，反之留在Home页
-            //获取存储的数据放在页面
+            //获取storage存储的数据放在页面
             this.user = storge.get("user");
-            // this.deptName=this.user.deptName;
-            // this.realName=this.user.realName;
+            this.realName=this.user.realName;
+            this.deptName=this.user.deptName;
             if(this.user==null){
                 this.$router.push({path:'/'})
               }else{
@@ -179,7 +175,7 @@
             },
         },
         mounted(){
-          //从store里获取数据
+          //从vuex store里获取数据
           // this.list=this.$store.state.list;
           // console.log(this.spList)
           this.home();
@@ -194,7 +190,7 @@
     border 1px solid #fd7522
     color #fff
   body
-      background #f9fafb
+      background #eeeeee
   .header
       position fixed
       width 100%
