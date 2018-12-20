@@ -59,10 +59,9 @@
   body
     background #ffffff
   #Content
-    margin-top 20%
     width 100%
     text-align center
-    padding 0% 3%
+    padding 20% 3% 0% 3%
   #Content img
     width 90%
 

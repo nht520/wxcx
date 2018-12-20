@@ -1,8 +1,7 @@
 <template>
-  <div id="Header">
     <v-card flat>
-      <div class="Headerone">
-        <v-toolbar>
+      <div id="Header">
+      <v-toolbar>
           <v-btn icon>
             <v-icon  @click="back">chevron_left</v-icon>
           </v-btn>
@@ -10,7 +9,6 @@
         </v-toolbar>
       </div>
     </v-card>
-  </div>
 </template>
 <script>
   export default {
@@ -31,19 +29,18 @@
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  .Headerone
-    width 100%
-    background #fff
-    overflow hidden
-    position fixed
-    /*z-index 9999*/
-    top 0
+  #Header
+   position fixed
+   width 100%
+   z-index 999
+   background #fff
     & .v-btn__content
       color #ffffff
+  .v-toolbar__content
+   background #ffffff
   .theme--light.v-toolbar
-    background-color #5c57e3
     text-align center
     color #ffffff
   .titleText
-    margin-left 95px!important
+    color #f00
 </style>

@@ -1,8 +1,7 @@
 <template>
     <div id="Home" >
       <!--头部-->
-      <div class="header">
-        <div class="HomeHeader">
+      <div class="HomeHeader">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-toolbar>
@@ -18,6 +17,7 @@
             </v-flex>
           </v-layout>
         </div>
+      <v-layout row wrap>
         <!--时间筛选-->
         <div class="HomeScreen">
           <v-layout row wrap>
@@ -35,43 +35,47 @@
             </v-flex>
           </v-layout>
         </div>
-      </div>
+      </v-layout>
       <!--数据列表-->
-      <div class="hlist">
-        <mt-loadmore :top-method="loadTop"   ref="loadmore" >
-          <ul
-            ref="loadmore"
-            :top-method="loadTop"
-            v-infinite-scroll="loadMore"
-            infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10"
-          >
-            <li>
-              <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
-                <router-link :to="'/Details/'+item.aid" tag="li">
-                  <v-layout  row wrap >
-                    <v-flex xs9 >
-                      <v-card-text><span>{{item.title}}</span></v-card-text>
-                    </v-flex>
-                    <v-flex xs3>
-                      <v-card-text><span> {{item.catid}}</span>盒</v-card-text>
-                    </v-flex>
-                    <v-flex xs7>
-                      <v-card-text>实收：<span class="official">{{item.dateline}}</span></v-card-text>
-                    </v-flex>
-                    <v-flex xs5>
-                      <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
-                    </v-flex>
-                    <v-flex xs12>
-                      <v-card-text>毛利：<span>{{item.aid}}</span></v-card-text>
-                    </v-flex>
-                  </v-layout>
-                </router-link>
-              </v-layout>
-            </li>
-          </ul>
-        </mt-loadmore>
-      </div>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <div class="hlist">
+              <mt-loadmore :top-method="loadTop"   ref="loadmore" >
+                <ul
+                  ref="loadmore"
+                  :top-method="loadTop"
+                  v-infinite-scroll="loadMore"
+                  infinite-scroll-disabled="loading"
+                  infinite-scroll-distance="10"
+                >
+                  <li>
+                    <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
+                      <router-link :to="'/Details/'+item.aid" tag="li">
+                        <v-layout  row wrap >
+                          <v-flex xs9 >
+                            <v-card-text><span>{{item.title}}</span></v-card-text>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-card-text><span> {{item.catid}}</span>盒</v-card-text>
+                          </v-flex>
+                          <v-flex xs7>
+                            <v-card-text>实收：<span class="official">{{item.dateline}}</span></v-card-text>
+                          </v-flex>
+                          <v-flex xs5>
+                            <v-card-text>应收：<span>{{item.catid}}</span></v-card-text>
+                          </v-flex>
+                          <v-flex xs12>
+                            <v-card-text>毛利：<span>{{item.aid}}</span></v-card-text>
+                          </v-flex>
+                        </v-layout>
+                      </router-link>
+                    </v-layout>
+                  </li>
+                </ul>
+              </mt-loadmore>
+            </div>
+          </v-flex>
+        </v-layout>
       <!--数据加载中-->
       <Lodding ref="lodClick">
         <span v-text="lodingtext"></span>
@@ -185,12 +189,11 @@
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+  #Home
+    background #f1f1f1
   .active
-    background #f00
     border 1px solid #fd7522
     color #fff
-  body
-      background #eeeeee
   .header
       position fixed
       width 100%
@@ -201,15 +204,27 @@
       padding 0
   .list
       margin-top 36%
+  .HomeHeader
+     position fixed
+     width 100%
+     z-index 998
   .HomeHeader .theme--light.v-toolbar
-      background #5c57e3
-      text-align center
-      color #ffffff
+      /*background #F00*/
+      /*text-align center*/
+      color #f00
+  .theme--light.v-toolbar
+      background #ffffff
+      -webkit-box-shadow 0 2px 4px -1px rgba(0,0,0,0.05), 0 4px 5px 0 rgba(0, 0, 0, 0.02), 0 1px 10px 0 rgba(0, 0, 0, 0.1)
+      box-shadow 0 2px 4px -1px rgba(0,0,0,0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.08), 0 1px 10px 0 rgba(0,0,0,0)
   .HomeScreen
       padding 4% 15px
       background #ffffff
       text-align center
       line-height 41px
+      position fixed
+      width 100%
+      z-index 888
+      margin-top 56px
       & button
         border-radius 3px
         font-size 1rem

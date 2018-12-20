@@ -148,12 +148,10 @@
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  .Header
-    overflow hidden
   .ActivateFrom
     width 80%
     margin 0 auto
-    margin-top 70px
+    padding-top 67px
     & button
       margin-top 10%
       width 100%
@@ -164,6 +162,8 @@
       font-size 16px
   .el-message
     margin-top 80%
+  .ActivateFrom
+    /*margin-top 45px*/
   .ActivateFrom .verification
     border 1px solid #5651ce
     background #ffffff
