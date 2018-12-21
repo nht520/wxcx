@@ -46,7 +46,7 @@
               },
               {
                 id:1,
-                path:'/Find',
+                path:'/List',
                 title:"列表",
                 icon:"fa fa-bomb",
               },

@@ -155,8 +155,7 @@
                 if(res.data.result.length<=0){
                   this.request = true; //true 请求终止
                   _this.$refs.DialogClick.logClick();
-                  _this.lodingtext="已经没有数据了哦！";
-                  alert("已经没有数据了哦");
+                  _this.retext="已经没有数据了哦！";
                 }else{
                   this.request = false;//false 继续请求
                 }

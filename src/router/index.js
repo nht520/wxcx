@@ -8,6 +8,7 @@ import Find from '@/components/Find'
 import Home from '@/components/Home'
 import Details from '@/components/Details'
 import Bottom from '@/components/Bottom'
+import List from '@/components/List'
 Vue.use(Router)
 export default new Router({
   // mode: 'history',
@@ -39,9 +40,9 @@ export default new Router({
           component: Home,
         },
         {
-          path: '/Find',
-          name: 'Finda',
-          component: Find,
+          path: '/List',
+          name: 'Lista',
+          component: List,
         },
       ]
     },
