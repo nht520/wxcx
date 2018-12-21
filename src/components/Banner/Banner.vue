@@ -49,6 +49,13 @@
 <style lang="stylus" rel="stylesheet/stylus">
   #Banner .v-carousel
    height 200px
+   & .v-carousel__controls
+     background none
+     height 20px
+   & .v-btn--icon.v-btn--small
+     width 0px
+   & .v-btn .v-btn__content .v-icon
+     font-size 8px !important
   #v-carousel img
    height 200px
    background-size 100%

@@ -124,7 +124,7 @@
                 _this.text=res.data.message;
                 _this.$refs.DialogClick.logClick();
               }
-            }else if(res.data){
+            }else{
               //如果登录失败 就返回错误信息
               _this.text=res.data.message;
               _this.$refs.DialogClick.logClick();
