@@ -3,6 +3,10 @@
       <Banner :banner="Listbanner"></Banner>
       <!--九宫格-->
       <Grid></Grid>
+      <!--支付-->
+      <v-btn fab dark small color="pink">
+        <v-icon dark>favorite</v-icon>
+      </v-btn>
     </div>
 </template>
 
