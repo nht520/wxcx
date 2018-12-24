@@ -84,7 +84,7 @@
       goLogin(){
         let _this = this;
         if(_this.username ===''){
-          _this.text="请输入用户名";
+            _this.text="请输入用户名";
             //调用子组件的logClick方法
             _this.$refs.DialogClick.logClick()
         }else if(_this.password==null  || _this.password === ''){

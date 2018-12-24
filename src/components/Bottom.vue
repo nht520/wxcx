@@ -52,8 +52,8 @@
               },
               {
                 id:2,
-                path:'http://w3.zaiyiqiba.com/love.php?make=1&id=534011',
-                title:"购物袋",
+                path:'/Paging',
+                title:"分业",
                 icon:"fa fa-heart",
               },
               {

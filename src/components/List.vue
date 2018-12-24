@@ -4,9 +4,13 @@
       <!--九宫格-->
       <Grid></Grid>
       <!--支付-->
-      <v-btn fab dark small color="pink">
-        <v-icon dark>favorite</v-icon>
-      </v-btn>
+      <!--<v-btn fab dark small color="pink">-->
+        <!--<v-icon dark>favorite</v-icon>-->
+      <!--</v-btn>-->
+      <!--视频-->
+      <div class="video" v-on:click="playVideo()">
+        <video :src="videoSrc" id="videoPlay" controls="controls">您的浏览器不支持 video 视屏播放。</video>
+      </div>
     </div>
 </template>
 
@@ -15,9 +19,13 @@
     import Grid from "./Gird/Gird";
     export default {
         name: "List",
-        components: {Grid, Banner},
+        components: {
+          Grid,
+          Banner
+        },
         data(){
           return{
+            videoSrc: 'https://www.html5tricks.com/demo/html5-canvas-video/BigBuckBunny_640x360.mp4',
             Listbanner: [
               {
                 src: require('../assets/images/20160831103906615621368.jpg'),
@@ -35,7 +43,10 @@
           }
         },
         methods:{
-
+          playVideo(){
+            var vdo = document.getElementById("videoPlay");
+            vdo.play();
+          }
         },
         mounted(){
 
@@ -43,6 +54,11 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  #videoPlay
+   width 100%
+   margin-bottom 20%
+  .video
+   width 92%
+   margin 0 auto
 </style>
