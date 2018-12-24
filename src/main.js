@@ -8,6 +8,10 @@ import router from './router'
 import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"
 Vue.use(Vuetify)
+// 外部UI插件'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 //
 import Mint from 'mint-ui';
 Vue.use(Mint);

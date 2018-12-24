@@ -18,16 +18,15 @@
           </v-flex>
         </v-layout>
       <!--分业-->
-      <!--<v-app id="inspire">-->
-        <!--<div class="text-xs-center">-->
-          <!--<v-pagination-->
-            <!--v-model="pages"-->
-            <!--:length="13"-->
-            <!--:oncuechange="paging(this.pages)"-->
-          <!--&gt;</v-pagination>-->
-        <!--</div>-->
-      <!--</v-app>-->
-
+      <v-app id="inspire">
+        <div class="text-xs-center">
+          <v-pagination
+            v-model="pages"
+            :length="13"
+            :onchange="paging(this.pages)"
+          ></v-pagination>
+        </div>
+      </v-app>
     </div>
 </template>
 <script>
@@ -49,7 +48,6 @@
                 if(res.status===200){
                   console.log(res);
                   _this.list=res.data.records;
-                  // _this.pages=res.data.pages;
                 }else {
                   // 就返回错误信息
                   _this.text=res.data.message;
@@ -72,7 +70,13 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  #Paging
+    margin-bottom 65px
   .primary
     background-color #1867c0 !important
     border-color #1867c0 !important
+  #inspire
+    background #ffffff
+  .application--wrap
+    min-height 45px
 </style>

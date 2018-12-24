@@ -8,8 +8,8 @@
         <!--<v-icon dark>favorite</v-icon>-->
       <!--</v-btn>-->
       <!--视频-->
-      <div class="video" v-on:click="playVideo()">
-        <video :src="videoSrc" id="videoPlay" controls="controls">您的浏览器不支持 video 视屏播放。</video>
+      <div class="video" v-on:click="playVideo()" >
+        <video :src="videoSrc" id="videoPlay" controls="controls" autoplay="autoplay">您的浏览器不支持 video 视屏播放。</video>
       </div>
     </div>
 </template>
