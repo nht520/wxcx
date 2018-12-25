@@ -21,12 +21,20 @@
       <v-app id="inspire">
         <div class="text-xs-center">
           <v-pagination
-            v-model="pages"
-            :length="13"
-            :onchange="paging(this.pages)"
+            v-model="page"
+            :length="pages"
+            @input="vtify"
+            circle
           ></v-pagination>
         </div>
       </v-app>
+      <!--<el-pagination-->
+        <!--layout="prev, pager, next"-->
+        <!--:total="100"-->
+        <!--:page-count="13"-->
+        <!--@current-change="current_change"-->
+      <!--&gt;-->
+      <!--</el-pagination>-->
     </div>
 </template>
 <script>
@@ -35,19 +43,20 @@
         name: "paging",
          data(){
             return{
-              pages:1,
+              page:1,
+              pages:0,
               list:[],
             }
          },
          methods:{
-            paging (pages){
-              console.log(pages);
+            paging (page){
               let _this = this;
-              let api="http://192.168.3.79:9999/api/news?current="+pages;
+              let api="http://192.168.3.79:9999/api/news?current="+page;
               Axios.get(api).then((res)=>{
                 if(res.status===200){
                   console.log(res);
                   _this.list=res.data.records;
+                  _this.pages=res.data.pages;
                 }else {
                   // 就返回错误信息
                   _this.text=res.data.message;
@@ -57,14 +66,18 @@
                 console.log(err)
               })
             },
-            setPage(index){
-              this.paging(index);
-              console.info(index+"111");
-            },
-            //点击改变page
+            //点击获取当前page
+            //  current_change(currentPage){
+            //    this.paging(currentPage);
+            //  }
+           vtify(value){
+              this.paging(value)
+             console.log(value)
+           }
          },
          mounted(){
-            this.setPage(1);
+            this.vtify(1)
+            // this.current_change(1);
          }
     }
 </script>
