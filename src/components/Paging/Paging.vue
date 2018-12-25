@@ -30,7 +30,7 @@
       </v-app>
       <!--<el-pagination-->
         <!--layout="prev, pager, next"-->
-        <!--:total="100"-->
+        <!--:total="38"-->
         <!--:page-count="13"-->
         <!--@current-change="current_change"-->
       <!--&gt;-->
@@ -44,7 +44,7 @@
          data(){
             return{
               page:1,
-              pages:0,
+              pages:1,
               list:[],
             }
          },

@@ -52,6 +52,9 @@
                     <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
                       <router-link :to="'/Details/'+item.aid" tag="li">
                         <v-layout  row wrap >
+                          <v-flex xs12>
+                            <img :src="item.pic">
+                          </v-flex>
                           <v-flex xs9 >
                             <v-card-text><span>{{item.title}}</span></v-card-text>
                           </v-flex>
@@ -113,7 +116,7 @@
             page: 1,
             dateone:'',
             curHeight:0,
-            datetwo:''
+            datetwo:'',
           }
         },
         methods:{
@@ -147,6 +150,7 @@
             let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page="+this.page;
             Axios.post(api,_date)
               .then((res)=>{
+                console.log(res);
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
                 // //点击刷新的时候追加数据

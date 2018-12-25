@@ -10,6 +10,7 @@ import Details from '@/components/Details'
 import Bottom from '@/components/Bottom'
 import List from '@/components/List'
 import Paging from '@/components/Paging/Paging'
+import About from '@/components/About/About'
 Vue.use(Router)
 export default new Router({
   // mode: 'history',
@@ -49,6 +50,11 @@ export default new Router({
           path:'/Paging',
           nam:'Paginga',
           component:Paging,
+        },
+        {
+          path:'/About',
+          nam:'About',
+          component:About,
         }
       ]
     },
