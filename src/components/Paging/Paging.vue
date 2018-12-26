@@ -18,7 +18,7 @@
           </v-flex>
         </v-layout>
       <!--分业-->
-      <v-app id="inspire">
+      <v-app id="inspire" v-show="show">
         <div class="text-xs-center">
           <v-pagination
             v-model="page"
@@ -43,6 +43,7 @@
         name: "paging",
          data(){
             return{
+              show:true,
               page:1,
               pages:1,
               list:[],
@@ -57,11 +58,17 @@
                   console.log(res);
                   _this.list=res.data.records;
                   _this.pages=res.data.pages;
+                  if (_this.list.length<1){
+                    _this.show=false;
+                    console.log(_this.list.length+"9")
+                  }else {
+                    _this.show=true
+                  }
                 }else {
                   // 就返回错误信息
                   _this.text=res.data.message;
                   _this.$refs.DialogClick.logClick();
-                }
+                };
               },(err)=>{
                 console.log(err)
               })
@@ -71,12 +78,12 @@
             //    this.paging(currentPage);
             //  }
            vtify(value){
-              this.paging(value)
-             console.log(value)
+              this.paging(value);
+              console.log(value);
            }
          },
          mounted(){
-            this.vtify(1)
+            this.vtify(1);
             // this.current_change(1);
          }
     }
