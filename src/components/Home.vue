@@ -40,14 +40,8 @@
         <v-layout row wrap>
           <v-flex xs12>
             <div class="hlist">
-              <mt-loadmore :top-method="loadTop"   ref="loadmore" >
-                <ul
-                  ref="loadmore"
-                  :top-method="loadTop"
-                  v-infinite-scroll="loadMore"
-                  infinite-scroll-disabled="loading"
-                  infinite-scroll-distance="10"
-                >
+              <mt-loadmore :top-method="loadTop" ref="loadmore">
+                <ul>
                   <li>
                     <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
                       <router-link :to="'/Details/'+item.aid" tag="li">
@@ -117,28 +111,40 @@
             dateone:'',
             curHeight:0,
             datetwo:'',
+            allLoaded: false,
           }
         },
         methods:{
           //触发 store
-          loadTop () { //组件提供的下拉触发方法
-            //下拉刷新
-            this.inquire();
-            //反转数据：
-            // this.list.reverse();
-            this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位
-          },
-          loadMore() {
-            this.inquire();
-          },
+          // loadTop () { //组件提供的下拉触发方法
+          //   console.log(this.page+"===loadTop===========")
+          //   this.isFirst =true;
+          //   this.page =1;
+          //   //下拉刷新
+          //   this.inquire();
+          //   //反转数据：
+          //   // this.list.reverse();
+          //   this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位
+          // },
+          // loadMore() {
+          //   console.log(this.page + "===loadMore===========")
+          //   if (this.isFirst) {
+          //     this.page++;
+          //   }
+          //   this.inquire();
+          // },
           //点击清空rsessionStorage里面的user,退出登录
           logout(){
             storge.remove("user");
             this.$router.push({path:'/'});
           },
+          //下拉刷新
+          loadTop(){
+            this.$refs.loadmore.onTopLoaded();
+            this.inquire();
+          },
           //查询方法
           inquire(){
-            //获取屏幕高度
             let _this = this;
             this.request = true; //请求数据的开关
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
@@ -153,9 +159,10 @@
                 console.log(res);
                 console.log(res.data.result.length);
                 _this.$refs.lodClick.lodClick();
-                // //点击刷新的时候追加数据
-                ++this.page;
-                _this.list = this.list.concat(res.data.result);
+                if ( _this.page === 1){
+                  _this.list =[];
+                }
+                _this.list = res.data.result;
                 if(res.data.result.length<=0){
                   this.request = true; //true 请求终止
                   _this.$refs.DialogClick.logClick();
@@ -186,6 +193,7 @@
           // this.list=this.$store.state.list;
           // console.log(this.spList)
           this.home();
+          this.inquire()
           //进入页面默认显示当天的记录
           // this.inquire();
         }
@@ -203,6 +211,7 @@
       top 0
   .hlist
       margin-top 36%
+      margin-bottom 65px
   .hlist ul
       padding 0
   .list

@@ -58,15 +58,15 @@
                   console.log(res);
                   _this.list=res.data.records;
                   _this.pages=res.data.pages;
+                  //当长度为零的进修隐藏分业
                   if (_this.list.length<1){
                     _this.show=false;
-                    console.log(_this.list.length+"9")
                   }else {
                     _this.show=true
                   }
                 }else {
                   // 就返回错误信息
-                  _this.text=res.data.message;
+                  _this.text=res.statusText;
                   _this.$refs.DialogClick.logClick();
                 };
               },(err)=>{
