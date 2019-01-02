@@ -40,7 +40,10 @@
         <v-layout row wrap>
           <v-flex xs12>
             <div class="hlist">
-              <mt-loadmore :top-method="loadTop" ref="loadmore">
+              <mt-loadmore
+                :top-method="loadTop"
+                 ref="loadmore"
+              >
                 <ul>
                   <li>
                     <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
@@ -115,24 +118,6 @@
           }
         },
         methods:{
-          //触发 store
-          // loadTop () { //组件提供的下拉触发方法
-          //   console.log(this.page+"===loadTop===========")
-          //   this.isFirst =true;
-          //   this.page =1;
-          //   //下拉刷新
-          //   this.inquire();
-          //   //反转数据：
-          //   // this.list.reverse();
-          //   this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位
-          // },
-          // loadMore() {
-          //   console.log(this.page + "===loadMore===========")
-          //   if (this.isFirst) {
-          //     this.page++;
-          //   }
-          //   this.inquire();
-          // },
           //点击清空rsessionStorage里面的user,退出登录
           logout(){
             storge.remove("user");
