@@ -107,5 +107,6 @@
     margin-top 10px
   .Grid .v-card__text
     padding 10px
-
+  .Grid .v-card
+    box-shadow none
 </style>
