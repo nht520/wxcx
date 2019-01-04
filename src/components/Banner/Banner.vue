@@ -49,6 +49,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   #Banner .v-carousel
    height 200px
+   box-shadow none
    & .v-carousel__controls
      background none
      height 20px

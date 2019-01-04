@@ -103,6 +103,7 @@
         },
         data () {
           return {
+            topStatus:true,
             request:false,
             lodingtext:'',
             retext:"",
