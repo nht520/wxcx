@@ -28,7 +28,7 @@
             videoSrc: 'https://www.html5tricks.com/demo/html5-canvas-video/BigBuckBunny_640x360.mp4',
             Listbanner: [
               {
-                src: require('../assets/images/20160831103906615621368.jpg'),
+                src: require('../assets/images/zsm.jpg'),
               },
               {
                 src: require('../assets/images/201607121004101585411670.jpg'),
