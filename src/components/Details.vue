@@ -42,7 +42,7 @@
         let _this = this;
         _this.$refs.lodClick.logClick();
         _this.lodingtext="数据加载中...";
-        var api='http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid='+aid;
+        var api=window.g.ParentPage.DeteailsApi+aid;
         this.$http.get(api).then((res)=>{
           console.log(res);
           _this.$refs.lodClick.lodClick();

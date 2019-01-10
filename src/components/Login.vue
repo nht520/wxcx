@@ -101,8 +101,8 @@
           // 加载动画
           //   _this.$refs.lodClick.logClick();
           //   _this.lodingtext="数据加载中...";
-          // var api ="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
-          var api ="http://md.9knx.com:9099/sale/login";
+          var api = window.g.ParentPage.LoginApi;
+          // var api ="http://md.9knx.com:9099/sale/login";
           Axios.post(api,_param).then((res)=>{
             console.log(res);
             if(res.status===200){
