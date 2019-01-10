@@ -139,7 +139,7 @@
                   _date.append("endTime",_this.$refs.datetwo.value1);
                   _this.$refs.lodClick.logClick();
                   _this.lodingtext="数据加载中...";
-            let api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page="+this.page;
+            let api=window.g.ApiUrl+this.page;
             Axios.post(api,_date)
               .then((res)=>{
                 console.log(res);
