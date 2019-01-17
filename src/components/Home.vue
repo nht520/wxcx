@@ -144,6 +144,7 @@
               .then((res)=>{
                 console.log(res);
                 console.log(res.data.result.length);
+                // ++this.page;
                 _this.$refs.lodClick.lodClick();
                 if ( _this.page === 1){
                   _this.list =[];

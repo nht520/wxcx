@@ -18,60 +18,93 @@ export default new Router({
     {
       path: '/',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/Details/:aid',
       name: 'Details',
-      component: Details
+      component: Details,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/Layout',
       name: 'Layout',
       component: Layout,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/Bottom',
       name: 'Bottom',
       component: Bottom,
+      meta: {
+        requiresAuth: true
+      },
       redirect:'/Home',
       children:[
         {
           path: '/Home',
           name: 'Homea',
           component: Home,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           path: '/List',
           name: 'Lista',
           component: List,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           path:'/Paging',
           nam:'Paginga',
           component:Paging,
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           path:'/About',
           nam:'About',
           component:About,
+          meta: {
+            requiresAuth: true
+          }
         }
       ]
     },
     {
       path: '/Dialog',
       name: 'Dialog',
-      component: Dialog
+      component: Dialog,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/Activate',
       name: 'Activate',
-      component: Activate
+      component: Activate,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/Find',
       name: 'Find',
-      component: Find
+      component: Find,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

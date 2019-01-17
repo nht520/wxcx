@@ -158,7 +158,7 @@
     },
     mounted(){
       this.home();
-    }
+    },
   }
 
 </script>
