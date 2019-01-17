@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// const Vue = require("vue");
+// // const Router = require("vue-router");
 Vue.use(Router);
 const Layout = () => import( '@/components/Layout.vue');
 const Login = () => import( '@/components/Login.vue');
