@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/components/Layout'
-import Login from '@/components/Login'
-import Dialog from '@/components/Dialog'
-import Activate from '@/components/Activate'
-import Find from '@/components/Find'
-import Home from '@/components/Home'
-import Details from '@/components/Details'
-import Bottom from '@/components/Bottom'
-import List from '@/components/List'
-import Paging from '@/components/Paging/Paging'
-import About from '@/components/About/About'
-Vue.use(Router)
+Vue.use(Router);
+const Layout = () => import( '@/components/Layout.vue');
+const Login = () => import( '@/components/Login.vue');
+const Dialog = () => import( '@/components/Dialog.vue');
+const Activate = () => import( '@/components/Activate.vue');
+const Find = () => import( '@/components/Find.vue');
+const Home = () => import( '@/components/Home.vue');
+const Details = () => import( '@/components/Details.vue');
+const Bottom = () => import( '@/components/Bottom.vue');
+const List = () => import( '@/components/List.vue');
+const Paging = () => import( '@/components/Paging/Paging.vue');
+const About = () => import( '@/components/About/About.vue');
 export default new Router({
   // mode: 'history',
   routes: [
