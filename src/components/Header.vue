@@ -21,6 +21,7 @@
       }
     },
     props: ['headtext'], // 直接简写方式，不指定类型
+
     methods:{
       back(){
         this.$router.go(-1);//返回上一层

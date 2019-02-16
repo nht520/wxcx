@@ -32,6 +32,7 @@
       handleChange(value) {
         this.value = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
         this.value1 = this.value;
+        console.log(this.value1)
         //this.show = true;
         // Toast({
         //   message: '已选择 ' + value.toString(),
@@ -43,6 +44,7 @@
       var  value = new Date();
       //默认显示提前一天的数据
       this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+(value.getDate()-1);
+
     },
   }
 </script>

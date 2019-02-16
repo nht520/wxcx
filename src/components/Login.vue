@@ -2,7 +2,7 @@
     <div id="Login">
         <!--登录背景-->
         <div class="Loginbj">
-          <img src="../assets/images/bj.png"/>
+          <img :src="src">
         </div>
         <!--输入-->
         <div class="LoginInput">
@@ -67,7 +67,8 @@
         username:'',
         password:'',
         text:'',
-        lodingtext:''
+        lodingtext:'',
+        src: require('../assets/images/bj.png'),
       }
     },
     components: {

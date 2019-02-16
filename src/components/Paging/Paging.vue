@@ -30,7 +30,7 @@
       </v-app>
       <!--<el-pagination-->
         <!--layout="prev, pager, next"-->
-        <!--:total="38"-->
+        <!--:total="pages"-->
         <!--:page-count="13"-->
         <!--@current-change="current_change"-->
       <!--&gt;-->
@@ -59,7 +59,7 @@
                   _this.list=res.data.records;
                   _this.pages=res.data.pages;
                   //当长度为零的进修隐藏分业
-                  if (_this.list.length<1){
+                  if(_this.list.length<1){
                     _this.show=false;
                   }else {
                     _this.show=true

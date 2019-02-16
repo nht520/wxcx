@@ -81,11 +81,9 @@
         <span v-text="lodingtext"></span>
       </Lodding>
       <!--提示-->
-      <transition name="fade">
         <Dialog  ref="DialogClick">
           <span v-text="retext"></span>
         </Dialog>
-      </transition>
     </div>
 </template>
 <script>
@@ -113,7 +111,6 @@
             list:[],
             page: 1,
             dateone:'',
-            curHeight:0,
             datetwo:'',
             allLoaded: false,
           }
@@ -144,7 +141,9 @@
               .then((res)=>{
                 console.log(res);
                 console.log(res.data.result.length);
+                // 加载更多
                 // ++this.page;
+                //刷新每次page赋值为1
                 _this.$refs.lodClick.lodClick();
                 if ( _this.page === 1){
                   _this.list =[];
@@ -157,6 +156,7 @@
                 }else{
                   this.request = false;//false 继续请求
                 }
+
               },(err)=>{
                 console.log(err)
               })

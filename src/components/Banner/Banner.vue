@@ -9,7 +9,6 @@
       </v-carousel>
     </div>
 </template>
-
 <script>
     export default {
         name: "Banner",
@@ -23,16 +22,16 @@
           return{
             Banner: [
               {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+                src: require('../../assets/images/zsm.jpg'),
               },
               {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+                src: require('../../assets/images/201607121004101585411670.jpg'),
               },
               {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+                src: require('../../assets/images/201607181113551042845401.jpg'),
               },
               {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+                src: require('../../assets/images/201607181113561275962470.jpg'),
               }
             ]
           }

@@ -7,16 +7,15 @@ import router from './router'
 // vuetify
 import Vuetify from "vuetify"
 import "vuetify/dist/vuetify.min.css"
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 // 外部UI插件'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 //
 import Mint from 'mint-ui';
 Vue.use(Mint);
 import 'mint-ui/lib/style.css'
-
 //引入状态管理
 import Vuex from 'vuex'
 import store from './store/store'
@@ -24,7 +23,7 @@ Vue.use(Vuex) ;
 
 //请求数据
 import VueResource from 'vue-resource';
-import Axios from "axios";
+// import Axios from "axios";
 import storage from "./storage/storage";
 Vue.use(VueResource);
 
@@ -36,11 +35,6 @@ new Vue({
   store,
   components: { App },
   template: '<App/>'
-});
-var api = window.g.ParentPage.LoginApi;
-Axios.post(api).then((res)=>{
-  console.log(res);
-  storage.set("user",res.data.data);
 });
 //全局守卫，记录登录状态
 router.beforeEach((to, from, next) => {
