@@ -1,51 +1,95 @@
 <template>
     <div id="About">
-      <v-content>
-        <v-container>
-          <v-layout row wrap align-center>
-            <v-flex xs12 md4>
-              <div class="text-xs-center">
-                <v-avatar size="125px">
-                  <img
-                    class="img-circle elevation-7 mb-1"
-                    :src="imgUrl"
-                  >
-                </v-avatar>
-                <div class="headline">John <span style="font-weight:bold">Carter</span></div>
-                <div class="subheading text-xs-center grey--text pt-1 pb-3">Lorem ipsum dolor sit amet</div>
-                <v-layout justify-space-between>
-                  <a href="javascript:;" class="body-2">Home</a>
-                  <a href="javascript:;" class="body-2">About</a>
-                  <a href="javascript:;" class="body-2">Github</a>
-                  <a href="javascript:;" class="body-2">Other</a>
-                </v-layout>
-              </div>
+      <!--时间筛选&ndash;&gt;-->
+      <v-layout row wrap>
+        <!--时间筛选-->
+        <div class="HomeScreen">
+          <v-layout row wrap>
+            <v-flex xs4>
+              <Datetime ref="dateone"></Datetime>
+            </v-flex>
+            <v-flex xs3>
+              <button @click="about()">查询</button>
             </v-flex>
           </v-layout>
-        </v-container>
-      </v-content>
+        </div>
+      </v-layout>
+      <!---->
+      <v-layout class="about" v-for="item in list" :key="item.hashId">
+            <v-flex xs12 sm6 offset-sm3>
+              <v-card>
+                <!--<v-img-->
+                  <!--:src="item.thumbnail_pic_s"-->
+                  <!--aspect-ratio="2.75"-->
+                <!--&gt;</v-img>-->
+                <v-card-title primary-title>
+                  <div class="content">
+                    <h3 class="headline mb-0">{{item.hashId}}</h3>
+                    <div> {{ item.content }} </div>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <v-btn flat color="orange">{{item.unixtime}}</v-btn>
+                  <v-btn flat color="orange">{{item.updatetime}}</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+      </v-layout>
+
     </div>
 </template>
-
 <script>
     import url from "../../assets/images/20160831103906615621368.jpg";
+    import Axios from "axios";
+    import Datetime from "../Datetime";
     export default {
         name: "About",
-        data(){
+      components: {
+        Datetime
+      },
+      data(){
           return{
             title:"11111",
             imgUrl:url,
+            key:"e44efe2abe461205d5ba84c83cc649a7",
+            sort:"desc",
+            list:[],
           }
         },
         methods:{
-
+          about(){
+            var api = "/jock";
+            var strtime = this.$refs.dateone.value1;
+            this.str = Date.parse(strtime)/1000; // 方法1
+            console.log(this.str);
+            // this.dateTime = str.substring(0,str.length-3);
+            // console.log(this.dateTime);
+            // console.log(this.$refs.dateone.value1);
+            const _date = new URLSearchParams();
+                    _date.append("key",this.key);
+                    _date.append("time",this.str);
+                    _date.append("sort",this.sort);
+              Axios.post(api,_date).then((res)=>{
+                    console.log(res);
+                    this.list=res.data.result.data;
+              },(err)=>{
+                   console.log(err);
+              })
+            }
         },
         mounted(){
-
+            this.about();
         },
     }
 </script>
 
-<style scoped>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  #About
+    padding 10px
+    & .about
+      margin-bottom 5%
+      & li
+        width 100%
+      & .content
+        overflow: hidden;
 </style>

@@ -4,5 +4,6 @@ window.g = {
   ParentPage: {
     LoginApi:'http://md.9knx.com:9099/sale/login',
     DeteailsApi:'http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid=',
+    News:"http://v.juhe.cn/toutiao/index"
   },
 }

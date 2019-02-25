@@ -36,6 +36,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 });
+
 //全局守卫，记录登录状态
 router.beforeEach((to, from, next) => {
   //store的getters中定义获取用户信息的函数  getUser

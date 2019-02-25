@@ -32,7 +32,6 @@
       handleChange(value) {
         this.value = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+value.getDate();
         this.value1 = this.value;
-        console.log(this.value1)
         //this.show = true;
         // Toast({
         //   message: '已选择 ' + value.toString(),
@@ -41,10 +40,53 @@
       },
     },
     mounted(){
+      //默认显示的value时间
       var  value = new Date();
-      //默认显示提前一天的数据
-      this.value1 = value.getFullYear()+'-'+(value.getMonth()+1)+'-'+(value.getDate()-1);
-
+      this.value1 = (value.getFullYear()-1)+'-'+(value.getMonth()+1)+'-'+(value.getDate()-1);
     },
   }
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+
+  .HomeScreen
+    padding 4% 15px
+    background #ffffff
+    text-align center
+    line-height 41px
+    position fixed
+    width 100%
+    z-index 888
+    margin-top 56px
+    & button
+      border-radius 3px
+      font-size 1rem
+      overflow hidden
+    & .xs3 button
+      border 1px solid #f3930a
+      color #f3930a
+      border-radius 3px
+      font-size 1rem
+      overflow hidden
+      height 41px
+      width 80%
+      float right
+    & .v-card__text
+      padding 0px
+  .HomeList
+    background #ffffff
+    margin-bottom 2%
+    padding 4% 1%
+    & .v-card__text
+      padding 6px 10px
+    & .xs3
+      text-align right
+    & .xs9
+      color #3d3d3d
+      font-size 1.1rem
+      font-weight bold
+    & .xs5
+      text-align right
+  .HomeList .official
+    color #f00
+
+</style>

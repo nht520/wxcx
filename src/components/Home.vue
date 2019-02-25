@@ -40,10 +40,8 @@
         <v-layout row wrap>
           <v-flex xs12>
             <div class="hlist">
-              <mt-loadmore
-                :top-method="loadTop"
-                 ref="loadmore"
-              >
+              <!--引用下拉刷新 加载更多组件-->
+              <Loadmore @ldmore="inquire" ref="Lomroe" :Loadmore="this">
                 <ul>
                   <li>
                     <v-layout class="HomeList"  v-for="(item,aid) in list" :key="item.aid"  >
@@ -72,7 +70,7 @@
                     </v-layout>
                   </li>
                 </ul>
-              </mt-loadmore>
+              </Loadmore>
             </div>
           </v-flex>
         </v-layout>
@@ -92,9 +90,11 @@
   import Datetime from "./Datetime";
   import Lodding from "./Lodding";
   import Dialog from "./Dialog";
+  import Loadmore from "./Loadmore/Loadmore";
   export default {
         name: "Home",
         components: {
+          Loadmore,
           Dialog,
           Lodding,
           Datetime
@@ -109,7 +109,6 @@
             realName:"",
             active:'',
             list:[],
-            page: 1,
             dateone:'',
             datetwo:'',
             allLoaded: false,
@@ -121,31 +120,27 @@
             storge.remove("user");
             this.$router.push({path:'/'});
           },
-          //下拉刷新
-          loadTop(){
-            this.$refs.loadmore.onTopLoaded();
-            this.inquire();
-          },
           //查询方法
           inquire(){
+            let page = this.$refs.Lomroe.page;
             let _this = this;
             this.request = true; //请求数据的开关
             //_this.$refs.date.value1获取子组件传过来的时间值，把值传给后台
             const _date = new URLSearchParams();
                   _date.append("startTime",_this.$refs.dateone.value1);
                   _date.append("endTime",_this.$refs.datetwo.value1);
-                  _this.$refs.lodClick.logClick();
-                  _this.lodingtext="数据加载中...";
-            let api=window.g.ApiUrl+this.page;
-            Axios.post(api,_date)
-              .then((res)=>{
+                  // _this.$refs.lodClick.logClick();
+                  // _this.lodingtext="数据加载中...";
+            let api=window.g.ApiUrl+page;
+            Axios.post(api,_date).then((res)=>{
                 console.log(res);
                 console.log(res.data.result.length);
-                // 加载更多
+              //将数据存放在store
+              _this.$store.commit('mdlist',res.data.result);
                 // ++this.page;
                 //刷新每次page赋值为1
                 _this.$refs.lodClick.lodClick();
-                if ( _this.page === 1){
+                if ( page === 1){
                   _this.list =[];
                 }
                 _this.list = res.data.result;
@@ -156,7 +151,6 @@
                 }else{
                   this.request = false;//false 继续请求
                 }
-
               },(err)=>{
                 console.log(err)
               })
@@ -177,8 +171,8 @@
         },
         mounted(){
           //从vuex store里获取数据
-          // this.list=this.$store.state.list;
-          // console.log(this.spList)
+          // this.list=this.$store.state.list.empName;
+          // console.log(this.list);
           this.home();
           this.inquire()
           //进入页面默认显示当天的记录
@@ -202,7 +196,7 @@
   .hlist ul
       padding 0
   .list
-      margin-top 36%
+      /*margin-top 36%*/
   .HomeHeader
      position fixed
      width 100%
@@ -215,45 +209,5 @@
       background #ffffff
       -webkit-box-shadow 0 2px 4px -1px rgba(0,0,0,0.05), 0 4px 5px 0 rgba(0, 0, 0, 0.02), 0 1px 10px 0 rgba(0, 0, 0, 0.1)
       box-shadow 0 2px 4px -1px rgba(0,0,0,0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.08), 0 1px 10px 0 rgba(0,0,0,0)
-  .HomeScreen
-      padding 4% 15px
-      background #ffffff
-      text-align center
-      line-height 41px
-      position fixed
-      width 100%
-      z-index 888
-      margin-top 56px
-      & button
-        border-radius 3px
-        font-size 1rem
-        overflow hidden
-      & .xs3 button
-          border 1px solid #f3930a
-          color #f3930a
-          border-radius 3px
-          font-size 1rem
-          overflow hidden
-          height 41px
-          width 80%
-          float right
-      & .v-card__text
-          padding 0px
-  .HomeList
-      background #ffffff
-      margin-bottom 2%
-      padding 4% 1%
-      & .v-card__text
-         padding 6px 10px
-      & .xs3
-         text-align right
-      & .xs9
-         color #3d3d3d
-         font-size 1.1rem
-         font-weight bold
-      & .xs5
-         text-align right
-  .HomeList .official
-      color #f00
 
 </style>
