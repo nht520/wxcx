@@ -76,7 +76,7 @@
             //点击获取当前page
             //  current_change(currentPage){
             //    this.paging(currentPage);
-            //  }
+            //  },
            vtify(value){
               this.paging(value);
               console.log(value);

@@ -10,20 +10,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://v.juhe.cn/toutiao/index',
-        changeOrigin: true, //true为开启跨域代理
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
       '/jock': {
         target: 'http://v.juhe.cn/joke/content/list.php',
         changeOrigin: true, //true为开启跨域代理
         pathRewrite: {
           '^/jock': ''
         }
-      }
+      },
+      '/api': {
+        target: 'http://v.juhe.cn/sms/send',
+        changeOrigin: true, //true为开启跨域代理
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

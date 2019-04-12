@@ -86,6 +86,7 @@
   .bounce-enter, .bounce-leave-to
     transform translateX(10px)
     opacity 0
+
   .menu
    position fixed
    z-index 999

@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   //user为空说明用户未登录则不跳转
   this.user = storage.get("user");
   let isLogin = this.user;
-  console.log(isLogin)
+  console.log(isLogin);
   if (!isLogin) {//未登录
     if (to.path !== '/') {//跳转到登录页
       return next({path: '/'});

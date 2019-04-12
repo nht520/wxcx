@@ -18,10 +18,10 @@
       <v-layout class="about" v-for="item in list" :key="item.hashId">
             <v-flex xs12 sm6 offset-sm3>
               <v-card>
-                <!--<v-img-->
-                  <!--:src="item.thumbnail_pic_s"-->
-                  <!--aspect-ratio="2.75"-->
-                <!--&gt;</v-img>-->
+<!--                <v-img-->
+<!--                  :src="item.thumbnail_pic_s"-->
+<!--                  aspect-ratio="2.75"-->
+<!--                ></v-img>-->
                 <v-card-title primary-title>
                   <div class="content">
                     <h3 class="headline mb-0">{{item.hashId}}</h3>

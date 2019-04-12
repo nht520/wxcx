@@ -48,6 +48,7 @@
             <span v-text="text"></span>
         </Dialog>
       </transition>
+
       <!--加载动画-->
       <Lodding ref="lodClick">
         <span v-text="lodingtext"></span>
